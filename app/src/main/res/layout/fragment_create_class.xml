@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/antiFlashWhite"
+    android:orientation="vertical"
+    tools:context=".homeFragments.CreateClassFragment">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class Registration Form"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@color/antiFlashWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teacher's User Name"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/teacher_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="Your unique UserID"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/unitedNationBlue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class Name"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/class_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="Enter the new class name"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/unitedNationBlue" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Institute Name"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/institute_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="Enter the name of your institute"
+                android:textStyle="bold"
+                android:singleLine="false"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColor="@color/unitedNationBlue" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Batch(year)"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/batch_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="YYYYY"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="@color/unitedNationBlue" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class Description"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="Write someting about your calass"
+                android:textStyle="bold"
+                android:singleLine="false"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColor="@color/unitedNationBlue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fees(if you are doing it for free , keep it empty)"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/fees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="Class Fees"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="@color/unitedNationBlue" />
+
+            <Button
+                android:id="@+id/create_class_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/btn"
+                android:layout_gravity="center"
+                android:text="Create Class"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

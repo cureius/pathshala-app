@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.jugaru.pathshala.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            style="@style/headerText"
+            android:text="Account Info"
+            android:layout_marginBottom="20dp"/>
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/nameImageView"
+                android:src="@drawable/ic_name"
+                android:tint="@color/unitedNationBlue"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Name"
+                android:layout_toRightOf="@id/nameImageView"
+                android:layout_above="@id/nameTextView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:text="developer"
+                android:layout_toRightOf="@id/nameImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/mobileImageView"
+                android:src="@drawable/ic_mobile"
+                android:tint="@color/unitedNationBlue"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Mobile"
+                android:layout_toRightOf="@id/mobileImageView"
+                style="@style/profileDetailsTextMain"/>
+
+            <TextView
+                android:text="+91-8129999999"
+                android:layout_toRightOf="@id/mobileImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/emailImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/ic_email"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Email"
+                android:layout_toRightOf="@id/emailImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="developer@appsnipp.com"
+                android:layout_toRightOf="@id/emailImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/addressImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/ic_address"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Address"
+                android:layout_toRightOf="@id/addressImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="Avenue 2nd Street NW SY."
+                android:layout_toRightOf="@id/addressImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/dobImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/ic_dob"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="D.O.B"
+                android:layout_toRightOf="@id/dobImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="12-05-1990"
+                android:layout_toRightOf="@id/dobImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/schoolImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/institite"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="School"
+                android:layout_toRightOf="@id/schoolImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="Ramakrishna Mission"
+                android:layout_toRightOf="@id/schoolImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/collegeImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/gradguatperson"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="College"
+                android:layout_toRightOf="@id/collegeImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="RCC institute of information technology"
+                android:layout_toRightOf="@id/collegeImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/workImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/suitcasework"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Occupation"
+                android:layout_toRightOf="@id/workImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="Still studying"
+                android:layout_toRightOf="@id/workImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/logOutImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/logout"
+                android:padding="5dp"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Log Out"
+                android:layout_toRightOf="@id/logOutImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="Click here to log out"
+                android:layout_toRightOf="@id/logOutImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/deleteAccountImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/ic_round_delete_forever_24"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:text="Delete Account"
+                android:layout_toRightOf="@id/deleteAccountImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                android:text="Once deleted , that will never be retrieved"
+                android:layout_toRightOf="@id/deleteAccountImageView"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+            <ImageView
+                android:id="@+id/editImageView"
+                android:tint="@color/unitedNationBlue"
+                android:src="@drawable/editpen"
+                android:padding="5dp"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:id="@+id/edit_profile_bold_text"
+                android:text="Edit"
+                android:layout_toRightOf="@id/editImageView"
+                style="@style/profileDetailsTextMain" />
+
+            <TextView
+                style="@style/profileDetailsMiniText"
+                android:layout_below="@id/edit_profile_bold_text"
+                android:layout_toEndOf="@id/editImageView"
+                android:paddingTop="5dp"
+                android:text="Click here tp edit profile details" />
+
+        </RelativeLayout>
+        <View style="@style/profileDetailsView" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+
+</androidx.core.widget.NestedScrollView>

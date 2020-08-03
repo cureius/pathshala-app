@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "129963536499",
+    "firebase_url": "https://pathshala-9900.firebaseio.com",
+    "project_id": "pathshala-9900",
+    "storage_bucket": "pathshala-9900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129963536499:android:262f4e8758f04bf7317a06",
+        "android_client_info": {
+          "package_name": "com.jugaru.pathshala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129963536499-vph60er08t3p6kh6ekocpbucgvl87np9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp-P4e3GhDJG6uxCnDVigaKErWiVN1Z6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129963536499-vph60er08t3p6kh6ekocpbucgvl87np9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

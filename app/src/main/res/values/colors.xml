@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorAccent">#03DAC5</color>
+
+<!--    CustomColor-->
+    <color name="arsenic">#1C242F</color>
+    <color name="arsenicBlue">#233040</color>
+    <color name="antiFlashWhite">#F5F5F5</color>
+    <color name="slateGray">#7F8D9A</color>
+    <color name="deepSkyBlue">#63B4EF</color>
+    <color name="steelBlue">#5EA3DE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="liteBlack">#1A1A1A</color>
+    <color name="amaranth">#EE4956</color>
+    <color name="crimson">#EA3448</color>
+    <color name="dodgerBlue">#0195F7</color>
+    <color name="battleshipGray">#999999</color>
+    <color name="prussianBlue">#08243A</color>
+    <color name="unitedNationBlue">#039BE6</color>
+    <color name="salmon">#FF8A66</color>
+    <color name="powderBlue">#8FA4AD</color>
+    <color name="safetyOrange">#FF9F00</color>
+    <color name="robinEggBlue">#11C5E0</color>
+    <!--colors for profile-->
+    <color name="profilePrimaryDark">#FF3B30</color>
+    <color name="profileAccentColor">#F7F7F7</color>
+    <color name="whiteTextColor">#fff</color>
+    <color name="profileBackground">#fff</color>
+    <color name="blackTextColor">#000</color>
+    <color name="profileEditTextColor">#707070</color>
+
+</resources>
