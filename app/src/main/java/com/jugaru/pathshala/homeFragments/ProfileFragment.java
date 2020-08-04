@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,6 +38,7 @@ import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
 import com.jugaru.pathshala.registration.RegisterActivity;
 import com.jugaru.pathshala.registration.UserNameActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,7 +50,7 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private String firstName , lastName , dateOfBirth , address , school , college , email , phone , username , fullName , aboutProfile , occupation ;
+    private String firstName , lastName , dateOfBirth , address , school , college , email , phone , username , fullName , aboutProfile , occupation , photoUrl ;
     private TextView userProfileName , userProfileMobileNumber , userProfileEmail , userProfileAddress , userProfileDOB , userProfileSchool , userProfileCollege ,
             userProfileOccupation , backToHomeBtn , userProfileUsername , userProfileAbout;
     private RelativeLayout logOut , deleteAccount , editProfile;
@@ -51,6 +58,11 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firestore;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DatabaseReference first = databaseReference.child("profile");
+    private ImageView profilePicture;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +70,23 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        first.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String link = snapshot.getValue(String.class);
+//                Picasso.get().load(link).into(profilePicture);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
@@ -79,6 +108,7 @@ public class ProfileFragment extends Fragment {
                         Log.d(TAG , "onSuccess: " + documentSnapshot.getData());
                         Log.d(TAG , "onSuccess: " + documentSnapshot.getString("FirstName"));
 
+                        photoUrl = documentSnapshot.getString("profile_Url");
                         firstName = documentSnapshot.getString("FirstName");
                         lastName = documentSnapshot.getString("LastName");
                         fullName = firstName+" "+lastName;
@@ -102,6 +132,8 @@ public class ProfileFragment extends Fragment {
                         userProfileUsername.setText(username);
                         userProfileAbout.setText(aboutProfile);
                         userProfileOccupation.setText(occupation);
+                        Picasso.get().load(photoUrl).into(profilePicture);
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -179,6 +211,7 @@ public class ProfileFragment extends Fragment {
         });
     }
     private void init(View view){
+        profilePicture = view.findViewById(R.id.profile_picture);
         userProfileAddress = view.findViewById(R.id.addressProfileTextView);
         userProfileCollege = view.findViewById(R.id.collegeProfileTextView);
         userProfileDOB = view.findViewById(R.id.DOBProfileTextView);
