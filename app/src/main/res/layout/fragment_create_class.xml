@@ -33,30 +33,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Teacher's User Name"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/liteBlack"/>
-            <EditText
-                android:id="@+id/teacher_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/textbox"
-                android:ems="10"
-                android:hint="Your unique UserID"
-                android:inputType="textPersonName"
-                android:padding="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/unitedNationBlue" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Class Name"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="30dp"

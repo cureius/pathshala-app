@@ -2,21 +2,19 @@ package com.jugaru.pathshala.homeFragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,22 +23,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
 import com.jugaru.pathshala.registration.RegisterActivity;
+import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.registration.UserNameActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 
@@ -61,7 +56,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DatabaseReference first = databaseReference.child("profile");
-    private ImageView profilePicture;
+    private CircleImageView profilePicture;
 
 
     @Override
@@ -91,6 +86,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         init(view);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -132,8 +128,10 @@ public class ProfileFragment extends Fragment {
                         userProfileUsername.setText(username);
                         userProfileAbout.setText(aboutProfile);
                         userProfileOccupation.setText(occupation);
-                        Picasso.get().load(photoUrl).into(profilePicture);
-
+                        if (!(photoUrl.isEmpty())) {
+                            Picasso.get().load(photoUrl).into(profilePicture);
+                            return;
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -143,12 +141,7 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-        backToHomeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,6 +199,10 @@ public class ProfileFragment extends Fragment {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent profileTOUsernameIntent = new Intent(getContext(), UserNameActivity.class);
+                startActivity(profileTOUsernameIntent);
+                getActivity().finish();
 
             }
         });

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,6 +35,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -41,6 +45,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.content.ContentValues.TAG;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class UserNameActivity extends AppCompatActivity {
@@ -53,8 +58,11 @@ public class UserNameActivity extends AppCompatActivity {
     public final static String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
     private StorageReference storage;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser ;
     private FirebaseFirestore firestore;
     private String url = "";
+    private String photoUrl, firstNameString , lastNameString , aboutProfileString , occupationString, addressString , collegeString , dateOfBirthString , schoolString , usernameString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,58 @@ public class UserNameActivity extends AppCompatActivity {
 
             }
         });
+
+
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        FirebaseFirestore.getInstance()
+                .collection("user")
+                .document(firebaseAuth.getCurrentUser().getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getId());
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getData());
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getString("FirstName"));
+
+                        photoUrl = documentSnapshot.getString("profile_Url");
+                        firstNameString = documentSnapshot.getString("FirstName");
+                        lastNameString = documentSnapshot.getString("LastName");
+                        aboutProfileString = documentSnapshot.getString("about");
+                        occupationString = documentSnapshot.getString("occupation");
+                        addressString = documentSnapshot.getString("city");
+                        collegeString = documentSnapshot.getString("college");
+                        dateOfBirthString = documentSnapshot.getString("DateOfBirth");
+                        schoolString = documentSnapshot.getString("school");
+                        usernameString = documentSnapshot.getString("username");
+
+                        firstName.setText(firstNameString);
+                        lastName.setText(lastNameString);
+                        username.setText(usernameString);
+                        DOB.setText(dateOfBirthString);
+                        city.setText(addressString);
+                        school.setText(schoolString);
+                        college.setText(collegeString);
+                        occupation.setText(occupationString);
+                        about.setText(aboutProfileString);
+
+                        if (!(photoUrl.isEmpty())) {
+                            Picasso.get().load(photoUrl).into(profileImageView);
+                            return;
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+
+
+
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new ProfileFragment());
 
         setFragment(0);
+        tabLayout.getTabAt(0).getIcon().setTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -84,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        tabLayout.getTabAt(0).getIcon().setTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
-
     }
 
     public void setFragment(int position){

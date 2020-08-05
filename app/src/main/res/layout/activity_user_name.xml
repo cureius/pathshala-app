@@ -51,6 +51,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="24dp"
+                android:gravity="center"
                 android:text="Tap the image to set a profile picture"
                 android:textColor="#000000"
                 android:textSize="14sp" />
@@ -63,6 +64,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:gravity="center"
                 android:text="You must give a unique username for identification " />
 
             <EditText
@@ -223,7 +225,7 @@
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/btn"
                 android:padding="5dp"
-                android:text="Create Profile" />
+                android:text="Upload Profile Details" />
 
         </LinearLayout>
     </ScrollView>

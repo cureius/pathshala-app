@@ -37,12 +37,18 @@
                 android:id="@+id/linearLayout"
                 android:background="@drawable/profile_bk">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_picture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/profile_round" />
+                    android:layout_marginEnd="24dp"
+                    android:elevation="3dp"
+                    android:src="@drawable/profileplaceholder"
+                    app:civ_border_color="@color/unitedNationBlue"
+                    app:civ_border_width="3dp" />
 
                 <TextView
                     android:id="@+id/user_profile_username"
@@ -123,7 +129,7 @@
 
                     <TextView
                         android:id="@+id/nameProfileTextView"
-                        android:text="developer"
+                        android:text="@string/loading_details"
                         android:layout_toRightOf="@id/nameImageView"
                         android:layout_below="@id/nameHeading"
                         style="@style/profileDetailsMiniText" />
@@ -150,7 +156,7 @@
                         android:layout_below="@+id/mobileHeading"
                         android:layout_marginTop="1dp"
                         android:layout_toRightOf="@id/mobileImageView"
-                        android:text="+91-8129999999" />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
@@ -174,7 +180,7 @@
                         android:layout_below="@+id/emailHeading"
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@id/emailImageView"
-                        android:text="developer@appsnipp.com" />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
@@ -198,7 +204,7 @@
                         android:layout_below="@+id/addressHeading"
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@id/addressImageView"
-                        android:text="Avenue 2nd Street NW SY." />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
@@ -222,7 +228,7 @@
                         android:layout_below="@+id/DOB_heading"
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@id/dobImageView"
-                        android:text="12-05-1990" />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
@@ -246,7 +252,7 @@
                         android:layout_below="@+id/schoolHeader"
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@id/schoolImageView"
-                        android:text="Ramakrishna Mission" />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
@@ -270,7 +276,7 @@
                         android:layout_below="@+id/collegeHeading"
                         android:layout_marginTop="1dp"
                         android:layout_toRightOf="@id/collegeImageView"
-                        android:text="RCC institute of information technology" />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
@@ -294,7 +300,7 @@
                         android:layout_below="@+id/workHeading"
                         android:layout_marginTop="1dp"
                         android:layout_toRightOf="@id/workImageView"
-                        android:text="Still studying" />
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
                 <View style="@style/profileDetailsView" />
