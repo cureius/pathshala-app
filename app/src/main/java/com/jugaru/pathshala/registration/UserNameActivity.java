@@ -178,8 +178,10 @@ public class UserNameActivity extends AppCompatActivity {
                 }
                 progressBar.setVisibility(View.VISIBLE);
                 firestore = FirebaseFirestore.getInstance();
-                firestore.collection("user").whereEqualTo("username", username.getText().toString())
-                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                firestore.collection("user")
+                        .whereEqualTo("username", username.getText().toString())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {

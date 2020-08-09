@@ -70,12 +70,20 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/student_dashboard_textView"
             android:layout_width="191dp"
             android:layout_height="158dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Under construction"
-            android:textSize="30sp" />
+            android:text="You are not enrolled in any class"
+            android:textColor="#651A1A1A"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/student_dashbosrd_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 </LinearLayout>

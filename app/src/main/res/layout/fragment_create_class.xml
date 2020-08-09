@@ -9,15 +9,18 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/class_registration_theme"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Class Registration Form"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:paddingTop="30dp"
+        android:paddingBottom="15dp"
+        android:layout_marginTop="0dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,6 +56,31 @@
                 android:padding="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/unitedNationBlue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subject"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/liteBlack"/>
+            <EditText
+                android:id="@+id/class_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/textbox"
+                android:ems="10"
+                android:hint="Enter the new class Subject"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/unitedNationBlue" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Batch(year)"
+                android:text="Batch"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="30dp"
                 android:textColor="@color/liteBlack"/>
@@ -95,9 +123,9 @@
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/textbox"
                 android:ems="10"
-                android:hint="YYYYY"
+                android:hint="Batch or Section"
                 android:textStyle="bold"
-                android:inputType="number"
+                android:inputType="text"
                 android:padding="10dp"
                 android:textColor="@color/unitedNationBlue" />
             <TextView
@@ -148,6 +176,18 @@
                 android:inputType="number"
                 android:padding="10dp"
                 android:textColor="@color/unitedNationBlue" />
+
+            <Button
+                android:id="@+id/choose_class_theme_colour_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/btn"
+                android:layout_gravity="center"
+                android:text="Choose Class Theme Colour"/>
 
             <Button
                 android:id="@+id/create_class_btn"
