@@ -1,5 +1,6 @@
 package com.jugaru.pathshala.homeFragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,12 +65,15 @@ public class CreateClassFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_create_class, container, false);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-        themeDefaultColour = R.color.unitedNationBlue;
+        themeDefaultColour = R.color.amaranth;
+        themeBar.setBackgroundColor(R.color.unitedNationBlue);
+        Log.d(TAG, "onSuccess: " + themeDefaultColour);
         firebaseAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance().getReference();
 
@@ -84,7 +89,6 @@ public class CreateClassFragment extends Fragment {
                         Log.d(TAG , "onSuccess: " + documentSnapshot.getString("FirstName"));
 
                         teacherUsername= documentSnapshot.getString("username");
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -94,12 +98,24 @@ public class CreateClassFragment extends Fragment {
                     }
                 });
 
-//        setThemeColourBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openColorPicker();
-//            }
-//        });
+        setThemeColourBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getContext(), themeDefaultColour, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                    @Override
+                    public void onCancel(AmbilWarnaDialog dialog) {
+
+                    }
+                    @Override
+                    public void onOk(AmbilWarnaDialog dialog, int color) {
+                        themeDefaultColour = color;
+                        themeBar.setBackgroundColor(themeDefaultColour);
+                        setThemeColourBtn.setBackgroundColor(themeDefaultColour);
+                    }
+                });
+                colorPicker.show();
+            }
+        });
 
         createClassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,34 +145,17 @@ public class CreateClassFragment extends Fragment {
                     fees.setError("Enter date of birth");
                     return;
                 }
+
                 teacherUid = firebaseAuth.getCurrentUser().getUid();
-                classUid = className.getText().toString()+"."+teacherUsername;
+                classUid = className.getText().toString().toLowerCase().trim()+"."+teacherUsername;
                 uploadClassDetails();
 
                 String massage = "Your new class has been created";
                 Toast.makeText(getContext(), massage, Toast.LENGTH_SHORT).show();
 //                progressBar.setVisibility(View.VISIBLE);
-
             }
         });
 
-    }
-
-    private void openColorPicker() {
-
-        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getContext(), themeDefaultColour, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
-
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                themeDefaultColour = color;
-                themeBar.setBackgroundColor(themeDefaultColour);
-            }
-        });
-        colorPicker.show();
     }
 
     private void init(View view){
@@ -184,7 +183,7 @@ public class CreateClassFragment extends Fragment {
         map.put("ClassDescription", description.getText().toString());
         map.put("ClassFee", fees.getText().toString());
         map.put("ClassUid", classUid);
-//        map.put("ClassThemeColor", themeDefaultColour);
+        map.put("ClassThemeColor", themeDefaultColour);
         map.put("StudentList", Arrays.asList("demoStudent0" , "demoStudent1"));
 
         firestore.collection("classes").document(classUid).set(map)

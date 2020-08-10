@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -22,7 +23,7 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<Classes , ClassAdapte
     @Override
     protected void onBindViewHolder(@NonNull ClassViewHolder holder, int position, @NonNull Classes classes) {
 
-        holder.batch.setText(classes.getBatch());
+        holder.batch.setText("(" + classes.getBatch() + ")");
         holder.classDescription.setText(classes.getClassDescription());
         holder.classFee.setText(classes.getClassFee());
         holder.className.setText(classes.getClassName());
@@ -30,15 +31,14 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<Classes , ClassAdapte
         holder.classUid.setText(classes.getClassUid());
         holder.instituteName.setText(classes.getInstituteName());
         holder.teacherUsername.setText(classes.getTeacherUsername());
-//        holder.classCard.setBackgroundColor(classes.getClassThemeColor());
-
+        holder.classCard.setCardBackgroundColor(classes.getClassThemeColor());
     }
 
     @NonNull
     @Override
     public ClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.class_card_design, parent, false);
+                .inflate(R.layout.card_design, parent, false);
 
         return new ClassViewHolder(view);
     }
@@ -46,7 +46,7 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<Classes , ClassAdapte
     class  ClassViewHolder extends RecyclerView.ViewHolder{
 
         TextView batch , classDescription , classFee , className , classSubject , classUid , instituteName , teacherUsername ;
-//        RelativeLayout classCard;
+        CardView classCard;
 
         public ClassViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,7 +59,7 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<Classes , ClassAdapte
             classUid = itemView.findViewById(R.id.classUid_model);
             instituteName = itemView.findViewById(R.id.institute_name_model);
             teacherUsername = itemView.findViewById(R.id.teacher_username_model);
-//            classCard = itemView.findViewById(R.id.class_card);
+            classCard = itemView.findViewById(R.id.class_card_view);
 
         }
     }

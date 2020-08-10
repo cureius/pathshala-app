@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".classInterface.ClassActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/class_card_view_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:cardBackgroundColor="@color/unitedNationBlue"
+        app:cardCornerRadius="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,2:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+
+            <TextView
+                android:id="@+id/class_fees_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/class_description_model_activity"
+                android:layout_below="@+id/teacher_username_model_activity"
+                android:layout_alignEnd="@+id/teacher_username_model_activity"
+                android:paddingRight="2dp"
+                android:text="1000$"
+                android:textColor="@color/prussianBlue"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/class_description_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/classUid_model_activity"
+                android:layout_alignStart="@+id/class_name_model_activity"
+                android:layout_alignEnd="@+id/teacher_username_model_activity"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/cookie"
+                android:padding="1dp"
+                android:text="My name is souraj pal , i am developing a mobile application , named PATHSHALA"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/teacher_username_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/class_subject_model_activity"
+                android:layout_alignEnd="@+id/batch_model_activity"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="sans-serif"
+                android:paddingRight="2dp"
+                android:text="username"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/classUid_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/class_subject_model_activity"
+                android:layout_alignStart="@+id/class_subject_model_activity"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/lobster"
+                android:text="PhysicsClass.Username "
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/class_name_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/berkshire_swash"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:text="Datastructure "
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/batch_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/class_name_model_activity"
+                android:layout_marginStart="53dp"
+                android:layout_marginTop="1dp"
+                android:layout_toEndOf="@+id/class_subject_model_activity"
+                android:fontFamily="@font/berkshire_swash"
+                android:padding="1dp"
+                android:text="(monday)"
+                android:textColor="@color/antiFlashWhite"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/class_subject_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/class_name_model_activity"
+                android:layout_alignStart="@+id/class_name_model_activity"
+                android:layout_marginTop="-3dp"
+                android:fontFamily="@font/leckerli_one"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="Class Subject"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/institute_name_model_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/teacher_username_model_activity"
+                android:layout_alignEnd="@+id/teacher_username_model_activity"
+                android:layout_marginBottom="-20dp"
+                android:fontFamily="@font/leckerli_one"
+                android:paddingLeft="8dp"
+                android:paddingRight="2dp"
+                android:text="Institute Name Here"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -128,7 +129,13 @@ public class ProfileFragment extends Fragment {
                         userProfileAbout.setText(aboutProfile);
                         userProfileOccupation.setText(occupation);
                         if (!(photoUrl.isEmpty())) {
-                            Picasso.get().load(photoUrl).into(profilePicture);
+//                            Picasso.get().load(photoUrl).into(profilePicture);
+                            Glide
+                                    .with(getContext())
+                                    .load(photoUrl)
+                                    .centerCrop()
+                                    .placeholder(R.drawable.profileplaceholder)
+                                    .into(profilePicture);
                             return;
                         }
                     }

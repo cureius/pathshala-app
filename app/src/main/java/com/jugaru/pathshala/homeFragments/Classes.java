@@ -10,7 +10,7 @@ public class Classes {
     String InstituteName ;
     String TeacherUid ;
     String TeacherUsername ;
-//    int ClassThemeColor ;
+    int ClassThemeColor ;
 
     public String getBatch() {
         return Batch;
@@ -84,13 +84,13 @@ public class Classes {
         TeacherUsername = teacherUsername;
     }
 
-//    public int getClassThemeColor() {
-//        return ClassThemeColor;
-//    }
-//
-//    public void setClassThemeColor(int classThemeColor) {
-//        ClassThemeColor = classThemeColor;
-//    }
+    public int getClassThemeColor() {
+        return ClassThemeColor;
+    }
+
+    public void setClassThemeColor(int classThemeColor) {
+        ClassThemeColor = classThemeColor;
+    }
 
     public Classes() {
     }

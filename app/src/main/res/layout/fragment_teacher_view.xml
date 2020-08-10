@@ -12,7 +12,7 @@
         android:id="@+id/toolbar_homeFragment"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/salmon"
+        android:background="@color/unitedNationBlue"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -28,16 +28,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/homeicon" />
+                android:paddingTop="10dp"
+                android:paddingEnd="-15dp"
+                android:paddingLeft="-15dp"
+                app:srcCompat="@drawable/ic_name"/>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:fontFamily="@font/croissant_one"
+                android:paddingTop="12dp"
                 android:text="Teacher Dashboard"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="23sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -54,6 +59,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_more_vert_24"
+                android:tint="@color/white"
                 tools:ignore="VectorDrawableCompat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
