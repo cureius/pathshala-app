@@ -3,10 +3,13 @@ package com.jugaru.pathshala.classInterface;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
+import com.jugaru.pathshala.homeFragments.Classes;
 
 public class ClassActivity extends AppCompatActivity {
 
@@ -17,12 +20,20 @@ public class ClassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class);
-
         init();
 
-
-
-
+        Classes classes =(Classes)getIntent().getParcelableExtra("SingleClass");
+        String ID = getIntent().getStringExtra("ClassID");
+        String path = getIntent().getStringExtra("ClassDocumentPath");
+        batch.setText(classes.getBatch());
+        classDescription.setText(classes.getClassDescription());
+        classFee.setText(classes.getClassFee());
+        className.setText(classes.getClassName());
+        classSubject.setText(classes.getClassSubject());
+        classUid.setText(classes.getClassUid());
+        instituteName.setText(classes.getInstituteName());
+        teacherUsername.setText(classes.getTeacherUsername());
+        classCard.setCardBackgroundColor(classes.getClassThemeColor());
     }
 
     private  void  init(){

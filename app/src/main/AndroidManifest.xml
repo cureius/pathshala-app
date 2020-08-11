@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".classInterface.ClassActivity">
+        <activity android:name=".classInterface.ClassActivity"
+            android:parentActivityName=".MainActivity">
 
         </activity>
         <activity

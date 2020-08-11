@@ -1,6 +1,9 @@
 package com.jugaru.pathshala.homeFragments;
 
-public class Classes {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Classes implements Parcelable {
     String Batch ;
     String ClassDescription ;
     String ClassFee ;
@@ -11,6 +14,50 @@ public class Classes {
     String TeacherUid ;
     String TeacherUsername ;
     int ClassThemeColor ;
+
+    protected Classes(Parcel in) {
+        Batch = in.readString();
+        ClassDescription = in.readString();
+        ClassFee = in.readString();
+        ClassName = in.readString();
+        ClassSubject = in.readString();
+        ClassUid = in.readString();
+        InstituteName = in.readString();
+        TeacherUid = in.readString();
+        TeacherUsername = in.readString();
+        ClassThemeColor = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Batch);
+        dest.writeString(ClassDescription);
+        dest.writeString(ClassFee);
+        dest.writeString(ClassName);
+        dest.writeString(ClassSubject);
+        dest.writeString(ClassUid);
+        dest.writeString(InstituteName);
+        dest.writeString(TeacherUid);
+        dest.writeString(TeacherUsername);
+        dest.writeInt(ClassThemeColor);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Classes> CREATOR = new Creator<Classes>() {
+        @Override
+        public Classes createFromParcel(Parcel in) {
+            return new Classes(in);
+        }
+
+        @Override
+        public Classes[] newArray(int size) {
+            return new Classes[size];
+        }
+    };
 
     public String getBatch() {
         return Batch;

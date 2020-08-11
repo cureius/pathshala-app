@@ -1,6 +1,8 @@
 package com.jugaru.pathshala.homeFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +26,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
+import com.jugaru.pathshala.classInterface.ClassActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 
-public class StudentViewFragment extends Fragment {
+public class StudentViewFragment extends Fragment{
 
     public StudentViewFragment() {
         // Required empty public constructor
@@ -104,6 +108,21 @@ public class StudentViewFragment extends Fragment {
                         .build();
         studentAdapter = new ClassAdapter(options);
         studentDashboardRecyclerView.setAdapter(studentAdapter);
+
+        studentAdapter.setOnItemClickListener(new ClassAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Classes classes = documentSnapshot.toObject(Classes.class);
+                String id = documentSnapshot.getId();
+                String path = documentSnapshot.getReference().getPath();
+                Toast.makeText(getContext(), "Position:" + position + "ID:" + id + "Path" + path , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext() , ClassActivity.class);
+                intent.putExtra("SingleClass" , (Parcelable) classes);
+                intent.putExtra("ClassID" , id );
+                intent.putExtra("ClassDocumentPath" , path );
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
