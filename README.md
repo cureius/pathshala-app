@@ -1,2 +1,1 @@
-# primitive_calculator
 # pathshala
