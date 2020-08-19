@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/crimson"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/classUid_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_subject_nav"
+            android:layout_alignStart="@+id/class_subject_nav"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/lobster"
+            android:text="PhysicsClass.Username "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/class_name_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/berkshire_swash"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:text="Datastructure "
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/batch_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_name_nav"
+            android:layout_alignBottom="@+id/class_subject_nav"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="-3dp"
+            android:layout_marginBottom="2dp"
+            android:layout_toEndOf="@+id/class_subject_nav"
+            android:fontFamily="@font/berkshire_swash"
+            android:padding="1dp"
+            android:text="(monday)"
+            android:textColor="@color/antiFlashWhite"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/class_subject_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/class_name_nav"
+            android:layout_alignStart="@+id/class_name_nav"
+            android:layout_marginTop="-3dp"
+            android:fontFamily="@font/leckerli_one"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:text="Class Subject"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

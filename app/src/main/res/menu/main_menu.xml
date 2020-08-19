@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_class_chat"
+            android:icon="@drawable/sms"
+            android:title="Class Chat" />
+
+        <item
+            android:id="@+id/nav_video_lecture"
+            android:icon="@drawable/ic_round_ondemand_video_24"
+            android:title="Video Lecture" />
+
+        <item
+            android:id="@+id/nav_class_notes"
+            android:icon="@drawable/ic_baseline_insert_drive_file_24"
+            android:title="Class Notes" />
+
+        <item
+            android:id="@+id/nav_class_fees"
+            android:icon="@drawable/ic_round_payment_24"
+            android:title="Fees" />
+
+    </group>
+
+    <item android:title="Setting">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_participant"
+                    android:icon="@drawable/ic_round_people_alt_24"
+                    android:title="participants" />
+
+                <item
+                    android:id="@+id/nav_share_class"
+                    android:icon="@drawable/ic_baseline_share_24"
+                    android:title="Share Class" />
+
+            </group>
+
+        </menu>
+
+    </item>
+
+
+    <item android:title="Feed Back">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_rate_us"
+                android:icon="@drawable/ic_baseline_rate_review_24"
+                android:title="Rate Us" />
+
+            <item
+                android:id="@+id/nav_leave_class"
+                android:icon="@drawable/ic_round_delete_24"
+                android:title="Leave Class" />
+
+
+
+        </menu>
+
+    </item>
+</menu>

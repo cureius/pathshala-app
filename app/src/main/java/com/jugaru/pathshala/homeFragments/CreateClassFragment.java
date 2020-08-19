@@ -71,7 +71,7 @@ public class CreateClassFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-        themeDefaultColour = R.color.amaranth;
+        themeDefaultColour = 30155229;
         themeBar.setBackgroundColor(R.color.unitedNationBlue);
         Log.d(TAG, "onSuccess: " + themeDefaultColour);
         firebaseAuth = FirebaseAuth.getInstance();
