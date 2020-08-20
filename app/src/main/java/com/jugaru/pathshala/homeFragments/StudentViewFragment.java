@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
 import com.jugaru.pathshala.classInterface.ClassActivity;
+import com.jugaru.pathshala.classInterface.ParticipantFragment;
 
 import java.io.Serializable;
 import java.util.List;
@@ -117,6 +118,10 @@ public class StudentViewFragment extends Fragment{
                 String path = documentSnapshot.getReference().getPath();
                 Toast.makeText(getContext(), "Position:" + position + "ID:" + id + "Path" + path , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext() , ClassActivity.class);
+                intent.putExtra("SingleClass" , (Parcelable) classes);
+                intent.putExtra("ClassID" , id );
+                intent.putExtra("ClassDocumentPath" , path );
+                Intent participant_intent = new Intent(getContext() , ParticipantFragment.class);
                 intent.putExtra("SingleClass" , (Parcelable) classes);
                 intent.putExtra("ClassID" , id );
                 intent.putExtra("ClassDocumentPath" , path );

@@ -6,13 +6,157 @@
     tools:context=".classInterface.ParticipantFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+<!--        <TextView-->
+<!--            android:id="@+id/student_dashboard_textView"-->
+<!--            android:layout_width="191dp"-->
+<!--            android:layout_height="158dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"-->
+<!--            android:text="You are not enrolled in any class"-->
+<!--            android:textColor="#651A1A1A"-->
+<!--            android:textSize="30sp"-->
+<!--            android:visibility="invisible" />-->
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Class Participant"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/teacher_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teacher"
+                android:textSize="37dp"
+                android:padding="13dp"
+                android:layout_marginTop="20dp"/>
+            <View style="@style/profileDetailsView"
+                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:outlineSpotShadowColor="@color/colorPrimary"/>
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:id="@+id/students_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Students"
+                android:textSize="37dp"
+                android:padding="13dp"
+                android:layout_marginTop="20dp"/>
+            <View style="@style/profileDetailsView"
+                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:outlineSpotShadowColor="@color/colorPrimary"/>
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include
+                android:layout_margin="5dp"
+                layout="@layout/profile_holder"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/class_participant_recyclerview"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+    <!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="Class Participant"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"/>-->
 
 </FrameLayout>

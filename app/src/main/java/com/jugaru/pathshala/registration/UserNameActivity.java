@@ -118,10 +118,10 @@ public class UserNameActivity extends AppCompatActivity {
                         occupation.setText(occupationString);
                         about.setText(aboutProfileString);
 
-                        if (!(photoUrl.isEmpty())) {
-                            Picasso.get().load(photoUrl).into(profileImageView);
-                            return;
-                        }
+//                        if (!(photoUrl.isEmpty())) {
+//                            Picasso.get().load(photoUrl).into(profileImageView);
+//                            return;
+//                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
