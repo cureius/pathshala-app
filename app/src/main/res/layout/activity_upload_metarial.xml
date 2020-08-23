@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".classInterface.UploadMaterialActivity">
+
+    <TextView
+        android:id="@+id/textView_upload_material_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:text="Upload Material"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/upload_file_icon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:tint="@color/unitedNationBlue"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="24dp"
+        tools:src="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/file_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/textbox"
+        android:ems="10"
+        android:hint="Name Of The File"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textSize="24sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/select_file_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:cardElevation="5dp"
+        android:layout_margin="25dp"
+        android:background="@color/unitedNationBlue"
+        app:cardBackgroundColor="@color/unitedNationBlue"
+        app:cardCornerRadius="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Select File"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/upload_file_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="20dp"
+        app:cardElevation="7dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/unitedNationBlue"
+        app:cardBackgroundColor="@color/unitedNationBlue"
+        app:cardCornerRadius="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Upload File"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

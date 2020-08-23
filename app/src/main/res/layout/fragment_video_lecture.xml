@@ -15,4 +15,18 @@
         android:layout_gravity="center"
         android:gravity="center"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_class_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/attuchment"
+        android:backgroundTint="@color/unitedNationBlue"
+        android:tint="@color/white"
+        android:focusable="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="35dp"
+        android:visibility="invisible"
+        android:elevation="6dp"/>
+
 </FrameLayout>

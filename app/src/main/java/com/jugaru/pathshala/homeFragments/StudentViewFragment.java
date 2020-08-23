@@ -40,7 +40,6 @@ public class StudentViewFragment extends Fragment{
     public StudentViewFragment() {
         // Required empty public constructor
     }
-
     private ImageView viewChangerDots;
     private FirebaseFirestore firestore;
     private TextView studentDashboardTv;
@@ -118,10 +117,6 @@ public class StudentViewFragment extends Fragment{
                 String path = documentSnapshot.getReference().getPath();
                 Toast.makeText(getContext(), "Position:" + position + "ID:" + id + "Path" + path , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext() , ClassActivity.class);
-                intent.putExtra("SingleClass" , (Parcelable) classes);
-                intent.putExtra("ClassID" , id );
-                intent.putExtra("ClassDocumentPath" , path );
-                Intent participant_intent = new Intent(getContext() , ParticipantFragment.class);
                 intent.putExtra("SingleClass" , (Parcelable) classes);
                 intent.putExtra("ClassID" , id );
                 intent.putExtra("ClassDocumentPath" , path );

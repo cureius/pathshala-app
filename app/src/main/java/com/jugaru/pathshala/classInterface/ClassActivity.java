@@ -146,8 +146,6 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
         fragmentTransaction.replace(frameLayout.getId(),fragmentList.get(position));
         fragmentTransaction.commit();
     }
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -155,10 +153,10 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
                 setFragment(0);
                 break;
             case  R.id.nav_class_notes:
-                setFragment(1);
+                setFragment(2);
                 break;
             case  R.id.nav_video_lecture:
-                setFragment(2);
+                setFragment(1);
                 break;
             case  R.id.nav_class_fees:
                 setFragment(3);

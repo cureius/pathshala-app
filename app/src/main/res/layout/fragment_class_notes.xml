@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".classInterface.ClassNotesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/class_notes_textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Class Notes"
@@ -14,5 +15,23 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:gravity="center"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/class_notes_recyclerview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_class_notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/attuchment"
+        android:backgroundTint="@color/unitedNationBlue"
+        android:tint="@color/white"
+        android:focusable="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="35dp"
+        android:visibility="invisible"
+        android:elevation="6dp"/>
+
 
 </FrameLayout>
