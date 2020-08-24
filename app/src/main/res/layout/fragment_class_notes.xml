@@ -1,42 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".classInterface.ClassNotesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_ClassNotes"
+    <com.google.android.material.timepicker.RadialViewGroup
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/class_notes_textView"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/teacher_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class Materials"
+                android:textSize="30dp"
+                android:layout_marginLeft="15dp"
+                android:padding="0dp"
+                android:layout_marginTop="10dp"/>
+            <View style="@style/profileDetailsView"
+                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:outlineSpotShadowColor="@color/colorPrimary"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.timepicker.RadialViewGroup>
+
+
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Class Notes"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:gravity="center"/>
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/class_notes_recyclerview"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_class_notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/attuchment"
-        android:backgroundTint="@color/unitedNationBlue"
-        android:tint="@color/white"
-        android:focusable="true"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="35dp"
-        android:visibility="invisible"
-        android:elevation="6dp"/>
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_ClassNotes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/class_notes_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Class Notes"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        <!--    <androidx.recyclerview.widget.RecyclerView-->
+        <!--        android:id="@+id/class_notes_recyclerview"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent" />-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_class_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/attuchment"
+            android:backgroundTint="@color/unitedNationBlue"
+            android:tint="@color/white"
+            android:focusable="true"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="35dp"
+            android:visibility="invisible"
+            android:elevation="6dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>

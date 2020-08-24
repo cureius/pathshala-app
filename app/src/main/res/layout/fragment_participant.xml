@@ -5,19 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".classInterface.ParticipantFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-<!--        <TextView-->
-<!--            android:id="@+id/student_dashboard_textView"-->
-<!--            android:layout_width="191dp"-->
-<!--            android:layout_height="158dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:gravity="center"-->
-<!--            android:text="You are not enrolled in any class"-->
-<!--            android:textColor="#651A1A1A"-->
-<!--            android:textSize="30sp"-->
-<!--            android:visibility="invisible" />-->
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,137 +13,151 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/teacher_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
                 android:text="Teacher"
-                android:textSize="37dp"
-                android:padding="13dp"
-                android:layout_marginTop="20dp"/>
-            <View style="@style/profileDetailsView"
-                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:textSize="37dp" />
+
+            <View
+                style="@style/profileDetailsView"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:outlineSpotShadowColor="@color/colorPrimary"/>
+                android:outlineAmbientShadowColor="@color/unitedNationBlue" />
 
-            <include
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                layout="@layout/profile_holder"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_pic_model_teacher"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/profileplaceholder"
+                    app:civ_border_color="@color/unitedNationBlue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/profile_username_model_teacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:text="username"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="@+id/user"
+                    app:layout_constraintTop_toBottomOf="@+id/user" />
+
+                <TextView
+                    android:id="@+id/user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Name Here"
+                    android:textColor="#000000"
+                    app:layout_constraintStart_toEndOf="@+id/profile_pic_model_teacher"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/students_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
                 android:text="Students"
-                android:textSize="37dp"
-                android:padding="13dp"
-                android:layout_marginTop="20dp"/>
-            <View style="@style/profileDetailsView"
-                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:textSize="37dp" />
+
+            <View
+                style="@style/profileDetailsView"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:outlineSpotShadowColor="@color/colorPrimary"/>
+                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:outlineSpotShadowColor="@color/colorPrimary" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <include
-                android:layout_margin="5dp"
                 layout="@layout/profile_holder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-
-            <include
-                android:layout_margin="5dp"
-                layout="@layout/profile_holder"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-
-            <include
-                android:layout_margin="5dp"
-                layout="@layout/profile_holder"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-
-            <include
-                android:layout_margin="5dp"
-                layout="@layout/profile_holder"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="5dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/class_participant_recyclerview"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="5dp" />
         </LinearLayout>
     </ScrollView>
-    <!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:text="Class Participant"-->
-<!--        android:textSize="30dp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:gravity="center"/>-->
-
 </FrameLayout>
