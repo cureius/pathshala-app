@@ -22,10 +22,10 @@ public class VideoLectureFragment extends Fragment {
 
     private FloatingActionButton floatingActionButton ;
     private FirebaseAuth firebaseAuth;
+
     public VideoLectureFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,6 @@ public class VideoLectureFragment extends Fragment {
                 intent.putExtra("classUid" , classes.getClassUid());
                 intent.putExtra("HeadingName" , "Upload Video Lecture" );
                 intent.putExtra("Icon" , R.drawable.ic_round_ondemand_video_24 );
-
                 startActivity(intent);
             }
         });

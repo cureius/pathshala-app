@@ -81,7 +81,6 @@ public class UploadMaterialActivity extends AppCompatActivity {
             }
         });
     }
-
     private void selectFile() {
         Intent intent = new Intent();
         intent.setType("application/pdf");
@@ -90,12 +89,11 @@ public class UploadMaterialActivity extends AppCompatActivity {
     }
     private void selectVideoLecture() {
         Intent intent = new Intent();
-//        intent.setType("video/*");
-        intent.setType("application/pdf");
+        intent.setType("video/*");
+//        intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Video file"), 2);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -106,7 +104,6 @@ public class UploadMaterialActivity extends AppCompatActivity {
             uploadVideoFile(data.getData());
         }
     }
-
     private void uploadVideoFile(Uri data) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading.....");
@@ -148,7 +145,6 @@ public class UploadMaterialActivity extends AppCompatActivity {
                 });
     }
 
-
     private void uploadFile(Uri data) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading.....");
@@ -159,13 +155,13 @@ public class UploadMaterialActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                         Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
                         while (!uri.isComplete()) ;
                         Uri url = uri.getResult();
-                        UploadClassNotes uploadClassNotes = new UploadClassNotes(fileName.getText().toString(), url.toString());
+//                        UploadClassNotes uploadClassNotes = new UploadClassNotes(fileName.getText().toString(), url.toString());
                         Map<String, Object> map = new HashMap<>();
-                        map.put("Material", uploadClassNotes);
+                        map.put("fileName", fileName.getText().toString());
+                        map.put("fileUri", url.toString());
                         firebaseFirestore.collection("/classes/" + classUid + "/classNotes/").document(String.valueOf(System.currentTimeMillis())).set(map)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -189,41 +185,5 @@ public class UploadMaterialActivity extends AppCompatActivity {
                     }
                 });
     }
-//    private void uploadVideoFile(Uri data , final String classUid) {
-//        final ProgressDialog progressDialog = new ProgressDialog(this);
-//        progressDialog.setTitle("Uploading.....");
-//        progressDialog.show();
-//        StorageReference reference = storageReference.child("classes/videoLecture/" + System.currentTimeMillis() + ".mp4");
-//        reference.putFile(data)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
-//                        while (!uri.isComplete()) ;
-//                        Uri url = uri.getResult();
-//                        UploadVideoLecture uploadVideoLecture = new UploadVideoLecture(fileName.getText().toString(), url.toString());
-//                        Map<String, Object> map = new HashMap<>();
-//                        map.put("Video", uploadVideoLecture);
-//                        firebaseFirestore.collection("/classes/" + classUid + "/videoLecture/").document(String.valueOf(System.currentTimeMillis())).set(map)
-//                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<Void> task) {
-//                                        if (!(task.isSuccessful())) {
-//                                            String error = Objects.requireNonNull(task.getException()).getMessage();
-//                                            Toast.makeText(UploadMaterialActivity.this, error, Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//                                });
-//                        Toast.makeText(UploadMaterialActivity.this, "Video Uploaded", Toast.LENGTH_SHORT).show();
-//                        progressDialog.dismiss();
-//                    }
-//                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-//                progressDialog.setMessage("Uploaded:" + (int) progress + "%");
-//                progressDialog.show();
-//            }
-//        });
-//    }
+
 }
