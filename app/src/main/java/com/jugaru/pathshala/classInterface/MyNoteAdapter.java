@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +40,12 @@ public class MyNoteAdapter extends RecyclerView.Adapter<MyFileViewHolder> {
 
         holder.noteName.setText((CharSequence) uploadClassNotesArrayList.get(position).getFileName());
         holder.noteTopic.setText((CharSequence) uploadClassNotesArrayList.get(position).getFileName());
+        holder.touchToOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(holder.noteName.getContext(), "Document "+uploadClassNotesArrayList.get(position).getFileName()+" is opening", Toast.LENGTH_LONG).show();
+            }
+        });
         holder.downloadNotesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
