@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jugaru.pathshala" >
+    package="com.jugaru.pathshala">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -12,20 +12,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".classInterface.UploadMaterialActivity" >
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".classInterface.NotesViewerActivity"></activity>
+        <activity android:name=".classInterface.UploadMaterialActivity" />
         <activity
             android:name=".classInterface.ClassActivity"
-            android:parentActivityName=".MainActivity" >
-        </activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/CropTheme." /> <!-- optional (needed if default theme has no action bar) -->
         <activity android:name=".registration.UserNameActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme." >
+            android:theme="@style/SplashTheme.">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,8 +35,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.ProfileTheme" >
-        </activity>
+            android:theme="@style/AppTheme.ProfileTheme" />
 
         <meta-data
             android:name="preloaded_fonts"

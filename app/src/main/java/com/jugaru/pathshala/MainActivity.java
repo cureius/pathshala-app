@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tablayout);
     }
 
-
     private  void checkUsername(){
 
         firestore.collection("user").document(firebaseAuth.getCurrentUser().getUid()).get()

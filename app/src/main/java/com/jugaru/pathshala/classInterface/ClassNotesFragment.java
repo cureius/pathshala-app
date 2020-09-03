@@ -13,8 +13,10 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.jugaru.pathshala.R;
 import com.jugaru.pathshala.homeFragments.Classes;
+import com.khizar1556.mkvideoplayer.MKPlayerActivity;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -34,9 +37,11 @@ public class ClassNotesFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db ;
-    private RecyclerView recyclerView;
-    ArrayList<UploadClassNotes> uploadClassNotesArrayList = new ArrayList<>();
-    MyNoteAdapter myNoteAdapter ;
+    private RecyclerView materialRecyclerView ;
+    private MyNoteAdapter noteAdapter;
+
+    private TextView noMaterial ;
+    private View header;
     public ClassNotesFragment() {
         // Required empty public constructor
     }
@@ -54,6 +59,8 @@ public class ClassNotesFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        noMaterial= view.findViewById(R.id.class_notes_textView);
+        header = view.findViewById(R.id.class_notes_header);
         firebaseAuth = FirebaseAuth.getInstance();
         super.onViewCreated(view, savedInstanceState);
         floatingActionButton = (FloatingActionButton)view.findViewById(R.id.fab_class_notes);
@@ -61,36 +68,6 @@ public class ClassNotesFragment extends Fragment {
         if(firebaseAuth.getCurrentUser().getUid().equals(classes.getTeacherUid())){
             floatingActionButton.setVisibility(View.VISIBLE);
         }
-        db = FirebaseFirestore.getInstance();
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_ClassNotes);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        if (uploadClassNotesArrayList.size() > 0)
-            uploadClassNotesArrayList.clear();
-        db = FirebaseFirestore.getInstance();
-        String classUid = classes.getClassUid();
-        db.collection("/classes/" + classUid + "/classNotes/")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (DocumentSnapshot documentSnapshot: task.getResult()){
-                            UploadClassNotes downloadFileModel = new UploadClassNotes(documentSnapshot.getString("fileName") ,
-                                    documentSnapshot.getString("fileUrl"));
-                            uploadClassNotesArrayList.add(downloadFileModel);
-                        }
-                        //here could be problem
-                        myNoteAdapter = new MyNoteAdapter(ClassNotesFragment.this , uploadClassNotesArrayList);
-                        recyclerView.setAdapter(myNoteAdapter);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,5 +80,28 @@ public class ClassNotesFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        db = FirebaseFirestore.getInstance();
+        materialRecyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_ClassNotes);
+        materialRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        String classUid = classes.getClassUid();
+        FirestoreRecyclerOptions.Builder<UploadClassNotes> uploadClassNotesBuilder = new FirestoreRecyclerOptions.Builder<UploadClassNotes>();
+        uploadClassNotesBuilder.setQuery(FirebaseFirestore.getInstance()
+                .collection("/classes/" + classUid + "/classNotes/") , UploadClassNotes.class);
+        FirestoreRecyclerOptions<UploadClassNotes> options =
+                uploadClassNotesBuilder
+                        .build();
+        noteAdapter = new MyNoteAdapter(options);
+        materialRecyclerView.setAdapter(noteAdapter);
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        noteAdapter.startListening();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        noteAdapter.stopListening();
+    }
+
 }

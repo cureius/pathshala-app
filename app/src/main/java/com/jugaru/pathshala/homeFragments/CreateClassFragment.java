@@ -34,6 +34,7 @@ import com.jugaru.pathshala.registration.UserNameActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -184,7 +185,7 @@ public class CreateClassFragment extends Fragment {
         map.put("ClassFee", fees.getText().toString());
         map.put("ClassUid", classUid);
         map.put("ClassThemeColor", themeDefaultColour);
-        map.put("StudentList", Arrays.asList("demoStudent0" , "demoStudent1"));
+        map.put("StudentList", Collections.emptyList());
 
         firestore.collection("classes").document(classUid).set(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

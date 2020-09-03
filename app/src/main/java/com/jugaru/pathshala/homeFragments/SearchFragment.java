@@ -100,12 +100,43 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
 
                 final String  searchedClassUid = searchBar.getText().toString();
-                final List[][] studentList = {new List[]{new ArrayList<String>()}};
-                FirebaseAuth firebaseAuth ;
+                final FirebaseAuth firebaseAuth ;
                 firebaseAuth = FirebaseAuth.getInstance();
                 final String applicantUid;
                 applicantUid = firebaseAuth.getCurrentUser().getUid();
 
+                FirebaseFirestore.getInstance()
+                        .collection("user")
+                        .document(firebaseAuth.getCurrentUser().getUid())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                Log.d(TAG , "onSuccess: " + documentSnapshot.getId());
+                                Log.d(TAG , "onSuccess: " + documentSnapshot.getData());
+                                List<String> listOfClass = (List<String>) documentSnapshot.get("ClassList");
+                                listOfClass.add(searchedClassUid);
+                                Log.d(TAG , "onSuccess: " + listOfClass);
+
+                                FirebaseFirestore fireStore1 = FirebaseFirestore.getInstance();
+                                Map<String, Object> map = new HashMap<>();
+                                map.put("ClassList", listOfClass);
+
+                                fireStore1.collection("user").document(firebaseAuth.getCurrentUser().getUid()).update(map)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (!(task.isSuccessful())) {
+                                                    String error = task.getException().getMessage();
+                                                    Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                                                }else {
+                                                    Toast.makeText(getContext(), "Class Added", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            }
+                        });
                 FirebaseFirestore.getInstance()
                         .collection("classes")
                         .document(searchedClassUid)

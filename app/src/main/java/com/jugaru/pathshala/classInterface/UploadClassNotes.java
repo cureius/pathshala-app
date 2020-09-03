@@ -27,4 +27,12 @@ public class UploadClassNotes {
     public void setFileUrl(String fileUrl) {
         this.fileUrl = fileUrl;
     }
+
+    @Override
+    public String toString() {
+        return "UploadClassNotes{" +
+                "fileName='" + fileName + '\'' +
+                ", fileUrl='" + fileUrl + '\'' +
+                '}';
+    }
 }

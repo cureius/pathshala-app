@@ -8,6 +8,7 @@
     tools:context=".classInterface.ClassNotesFragment">
 
     <com.google.android.material.timepicker.RadialViewGroup
+        android:id="@+id/class_notes_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,11 +27,9 @@
                 android:padding="0dp"
                 android:layout_marginTop="10dp"/>
             <View style="@style/profileDetailsView"
-                android:outlineAmbientShadowColor="@color/unitedNationBlue"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:outlineSpotShadowColor="@color/colorPrimary"/>
+                android:layout_marginBottom="15dp"/>
 
         </LinearLayout>
 
@@ -51,7 +50,7 @@
             android:id="@+id/class_notes_textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Class Notes"
+            android:text="Empty"
             android:textSize="30dp"
             android:textStyle="bold"
             android:layout_gravity="center"

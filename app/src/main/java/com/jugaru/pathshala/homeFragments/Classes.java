@@ -13,6 +13,7 @@ public class Classes implements Parcelable {
     String InstituteName ;
     String TeacherUid ;
     String TeacherUsername ;
+    String PaymentUPI ;
     int ClassThemeColor ;
 
     protected Classes(Parcel in) {
@@ -25,6 +26,7 @@ public class Classes implements Parcelable {
         InstituteName = in.readString();
         TeacherUid = in.readString();
         TeacherUsername = in.readString();
+        PaymentUPI = in.readString();
         ClassThemeColor = in.readInt();
     }
 
@@ -39,6 +41,7 @@ public class Classes implements Parcelable {
         dest.writeString(InstituteName);
         dest.writeString(TeacherUid);
         dest.writeString(TeacherUsername);
+        dest.writeString(PaymentUPI);
         dest.writeInt(ClassThemeColor);
     }
 
@@ -131,6 +134,14 @@ public class Classes implements Parcelable {
         TeacherUsername = teacherUsername;
     }
 
+    public String getPaymentUPI() {
+        return PaymentUPI;
+    }
+
+    public void setPaymentUPI(String paymentUPI) {
+        PaymentUPI = paymentUPI;
+    }
+
     public int getClassThemeColor() {
         return ClassThemeColor;
     }
@@ -154,6 +165,8 @@ public class Classes implements Parcelable {
                 ", InstituteName='" + InstituteName + '\'' +
                 ", TeacherUid='" + TeacherUid + '\'' +
                 ", TeacherUsername='" + TeacherUsername + '\'' +
+                ", PaymentUPI='" + PaymentUPI + '\'' +
+                ", ClassThemeColor=" + ClassThemeColor +
                 '}';
     }
 

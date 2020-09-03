@@ -31,4 +31,6 @@
     <color name="blackTextColor">#000</color>
     <color name="profileEditTextColor">#707070</color>
 
+    <color name="black_overlay">#66000000</color>
+
 </resources>

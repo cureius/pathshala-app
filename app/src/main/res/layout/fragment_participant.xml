@@ -91,66 +91,6 @@
                 android:outlineAmbientShadowColor="@color/unitedNationBlue"
                 android:outlineSpotShadowColor="@color/colorPrimary" />
 
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
-            <include
-                layout="@layout/profile_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/class_participant_recyclerview"
                 android:layout_width="match_parent"
@@ -158,6 +98,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="5dp" />
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

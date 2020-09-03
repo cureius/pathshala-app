@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".classInterface.TeacherFeesFragment">
+
+
+        <LinearLayout
+            android:id="@+id/main_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="YOUR UPI IS CONNECTED ALREADY"
+                android:textColor="@color/liteBlack"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/UPI_setup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55dp"
+                android:text="Add Payment Gateway"
+                android:textColor="@color/liteBlack"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="60dp"
+                android:gravity="center"
+                android:text="Enter your unique UPI ID to enable \n online fee Feature"
+                android:textColor="@color/liteBlack"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/upi_id_input"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/textbox"
+                android:hint="Enter UPI ID here"
+                android:inputType="textEmailAddress"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="200dp"
+                android:gravity="center"
+                android:outlineAmbientShadowColor="@color/robinEggBlue"
+                android:text="This would help you to connect with your \nGOOGLE PAY , PHONE PAY  , PAYtm , \nAMAZON PAYMENT , BHIM UPI... "
+                android:textColor="@color/liteBlack"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/upi_submit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn"
+                android:text="SUBMIT"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+</FrameLayout>

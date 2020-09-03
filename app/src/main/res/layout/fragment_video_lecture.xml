@@ -1,19 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".classInterface.VideoLectureFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.timepicker.RadialViewGroup
+        android:id="@+id/Video_Lecture_header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Video Lectures"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/teacher_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Video Lectures"
+                android:textSize="30dp"
+                android:layout_marginLeft="15dp"
+                android:padding="0dp"
+                android:layout_marginTop="10dp"/>
+            <View style="@style/profileDetailsView"
+                android:outlineAmbientShadowColor="@color/unitedNationBlue"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:outlineSpotShadowColor="@color/colorPrimary"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.timepicker.RadialViewGroup>
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_VideoLectures"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/class_notes_textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="Class Notes"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"/>    -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_class_video"
@@ -29,4 +72,6 @@
         android:visibility="invisible"
         android:elevation="6dp"/>
 
-</FrameLayout>
+    </FrameLayout>
+
+</LinearLayout>
