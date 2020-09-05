@@ -72,7 +72,7 @@ public class TeacherFeesFragment extends Fragment {
             Classes classes = getActivity().getIntent().getParcelableExtra("SingleClass");
             Map<String, Object> map = new HashMap<>();
             map.put("PaymentUPI", UPIid.getText().toString());
-            firestore.collection("classes").document(classes.getClassUid()).set(map)
+            firestore.collection("classes").document(classes.getClassUid()).update(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

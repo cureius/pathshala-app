@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#6503DAC5"
+    android:background="@color/antiFlashWhite"
     android:padding="5dp"
     tools:context=".homeFragments.SearchFragment">
 
@@ -40,7 +40,7 @@
 
     </LinearLayout>
 
-    <View style="@style/profileDetailsView" />
+    <View style="@style/DividerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/class_search_recyclerview"

@@ -43,10 +43,12 @@ public class StudentViewFragment extends Fragment{
     private ImageView viewChangerDots;
     private FirebaseFirestore firestore;
     private TextView studentDashboardTv;
+    private TextView teacherDashboardTv;
 
     private RecyclerView studentDashboardRecyclerView ;
     private ClassAdapter studentAdapter;
-
+    private RecyclerView teacherDashboardRecyclerView ;
+    private ClassAdapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,19 +60,18 @@ public class StudentViewFragment extends Fragment{
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_student_view, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-
-        viewChangerDots.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).setFragmentTeacherStudent(new TeacherViewFragment());
-            }
-        });
+//
+//        viewChangerDots.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity)getActivity()).setFragmentTeacherStudent(new TeacherViewFragment());
+//            }
+//        });
         FirebaseAuth firebaseAuth;
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -85,7 +86,7 @@ public class StudentViewFragment extends Fragment{
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
                             } else {
-                                studentDashboardTv.setVisibility(View.VISIBLE);
+//                                studentDashboardTv.setVisibility(View.INVISIBLE);
                                 return;
                             }
                         } else {
@@ -108,7 +109,8 @@ public class StudentViewFragment extends Fragment{
                         .build();
         studentAdapter = new ClassAdapter(options);
         studentDashboardRecyclerView.setAdapter(studentAdapter);
-
+        studentDashboardRecyclerView.setNestedScrollingEnabled(false);
+//        studentDashboardTv.setVisibility(View.INVISIBLE);
         studentAdapter.setOnItemClickListener(new ClassAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
@@ -123,23 +125,76 @@ public class StudentViewFragment extends Fragment{
                 startActivity(intent);
             }
         });
-    }
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        firestore.collection("classes")
+                .whereEqualTo("TeacherUid" , firebaseAuth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<DocumentSnapshot> document = task.getResult().getDocuments();
+                            if (!(document.isEmpty())) {
+                                Log.d(TAG, "onComplete: document list found ");
+                            } else {
+//                                teacherDashboardTv.setVisibility(View.INVISIBLE);
+                                return;
+                            }
+                        } else {
+                            String error = task.getException().getMessage();
+                            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+//                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
 
+        teacherDashboardRecyclerView = view.findViewById(R.id.teacherDashboard_recyclerView);
+        teacherDashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        FirestoreRecyclerOptions.Builder<Classes> classesBuilder2 = new FirestoreRecyclerOptions.Builder<Classes>();
+        classesBuilder2.setQuery(FirebaseFirestore.getInstance()
+                .collection("classes")
+                .whereEqualTo("TeacherUid" , FirebaseAuth.getInstance().getCurrentUser().getUid()), Classes.class);
+        FirestoreRecyclerOptions<Classes> options2 =
+                classesBuilder2
+                        .build();
+
+        adapter = new ClassAdapter(options2);
+        teacherDashboardRecyclerView.setAdapter(adapter);
+        teacherDashboardRecyclerView.setNestedScrollingEnabled(false);
+//        teacherDashboardTv.setVisibility(View.INVISIBLE);
+        adapter.setOnItemClickListener(new ClassAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Classes classes = documentSnapshot.toObject(Classes.class);
+                String id = documentSnapshot.getId();
+                String path = documentSnapshot.getReference().getPath();
+                Toast.makeText(getContext(), "Position:" + position + "ID:" + id + "Path" + path , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext() , ClassActivity.class);
+                intent.putExtra("SingleClass" , (Parcelable) classes);
+                intent.putExtra("ClassID" , id );
+                intent.putExtra("ClassDocumentPath" , path );
+                startActivity(intent);
+            }
+        });
+    }
     @Override
     public void onStart() {
         super.onStart();
+        adapter.startListening();
         studentAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        adapter.stopListening();
         studentAdapter.stopListening();
     }
-
-
     private void init(View view){
         viewChangerDots =view.findViewById(R.id.homeMenuBtnOfStudent);
         studentDashboardTv =view.findViewById(R.id.student_dashboard_textView);
+        teacherDashboardTv =view.findViewById(R.id.teacher_dashboard_textView);
     }
 }

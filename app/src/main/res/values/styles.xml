@@ -27,7 +27,7 @@
     <style name="CropTheme." parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/white</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/unitedNationBlue</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
 
@@ -105,7 +105,14 @@
 
     <style name="profileDetailsView">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">3dp</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">#D5E1E3</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="DividerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
         <item name="android:background">@color/steelBlue</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
