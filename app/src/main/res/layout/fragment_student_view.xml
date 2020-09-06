@@ -74,7 +74,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100"
             android:orientation="vertical">
 
             <TextView
@@ -92,8 +91,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/student_dashbosrd_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="50"/>
+                android:layout_height="wrap_content" />
 
 
             <TextView
@@ -112,8 +110,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/teacherDashboard_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="50"/>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </ScrollView>
