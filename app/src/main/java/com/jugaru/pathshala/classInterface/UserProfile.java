@@ -5,6 +5,7 @@ public final class UserProfile {
     String LastName ;
     String profile_Url ;
     String username ;
+    String userId ;
 
     public UserProfile() {
     }
@@ -41,13 +42,22 @@ public final class UserProfile {
         this.username = username;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                " FirstName='" + FirstName + '\'' +
+        return "UserProfile{" +
+                "FirstName='" + FirstName + '\'' +
                 ", LastName='" + LastName + '\'' +
-                ", username='" + username + '\'' +
                 ", profile_Url='" + profile_Url + '\'' +
+                ", username='" + username + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

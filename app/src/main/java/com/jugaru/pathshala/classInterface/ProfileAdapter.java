@@ -1,6 +1,7 @@
 package com.jugaru.pathshala.classInterface;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileHolder> {
-    ParticipantFragment participantFragment;
     List<UserProfile> userList;
     private Context context ;
     public ProfileAdapter(Context context, ArrayList<UserProfile> userList) {
@@ -42,13 +42,16 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileHolder> {
                     .load(userList.get(position).getProfile_Url())
                     .into(holder.dp);
         }
-//        holder.downloadNotesBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                downloadFile(holder.noteName.getContext() , uploadClassNotesArrayList.get(position).getFileName() ,
-//                        ".pdf" , DIRECTORY_DOWNLOADS , uploadClassNotesArrayList.get(position).getFileUrl());
-//            }
-//        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context , MessageActivity.class);
+                i.putExtra("username" , userList.get(position).getUsername());
+                i.putExtra("dp" , userList.get(position).getProfile_Url());
+                i.putExtra("userId" , userList.get(position).getUserId());
+                context.startActivity(i);
+            }
+        });
     }
     @Override
     public int getItemCount() {

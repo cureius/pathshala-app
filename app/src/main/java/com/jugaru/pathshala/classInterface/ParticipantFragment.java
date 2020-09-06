@@ -100,6 +100,7 @@ public class ParticipantFragment extends Fragment {
                             userProfile.setFirstName(documentSnapshot.getString("FirstName"));
                             userProfile.setLastName(documentSnapshot.getString("LastName"));
                             userProfile.setProfile_Url(documentSnapshot.getString("profile_Url"));
+                            userProfile.setUserId(documentSnapshot.getId());
                             list.add(userProfile);
                         }
                         profileAdapter = new ProfileAdapter(getContext() , list);
@@ -132,7 +133,7 @@ public class ParticipantFragment extends Fragment {
                         if (!(photoUrl.isEmpty())) {
 //                            Picasso.get().load(photoUrl).into(profilePicture);
                             Glide
-                                    .with(getContext())
+                                    .with(Objects.requireNonNull(getActivity()).getApplicationContext())
                                     .load(photoUrl)
                                     .centerCrop()
                                     .placeholder(R.drawable.profileplaceholder)

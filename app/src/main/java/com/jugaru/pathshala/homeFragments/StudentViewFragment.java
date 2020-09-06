@@ -31,6 +31,7 @@ import com.jugaru.pathshala.classInterface.ParticipantFragment;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,11 +41,10 @@ public class StudentViewFragment extends Fragment{
     public StudentViewFragment() {
         // Required empty public constructor
     }
-    private ImageView viewChangerDots;
+
     private FirebaseFirestore firestore;
     private TextView studentDashboardTv;
     private TextView teacherDashboardTv;
-
     private RecyclerView studentDashboardRecyclerView ;
     private ClassAdapter studentAdapter;
     private RecyclerView teacherDashboardRecyclerView ;
@@ -65,24 +65,48 @@ public class StudentViewFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-//
 //        viewChangerDots.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                ((MainActivity)getActivity()).setFragmentTeacherStudent(new TeacherViewFragment());
 //            }
 //        });
+        showStudentDashboard();
+        showTeacherDashboard();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+        studentAdapter.startListening();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+        studentAdapter.stopListening();
+    }
+    private void init(View view){
+        ImageView viewChangerDots = view.findViewById(R.id.homeMenuBtnOfStudent);
+        studentDashboardTv =view.findViewById(R.id.student_dashboard_textView);
+        teacherDashboardTv =view.findViewById(R.id.teacher_dashboard_textView);
+        studentDashboardRecyclerView = view.findViewById(R.id.student_dashbosrd_recyclerview);
+        teacherDashboardRecyclerView = view.findViewById(R.id.teacherDashboard_recyclerView);
+        teacherDashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        studentDashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+    private void showStudentDashboard(){
         FirebaseAuth firebaseAuth;
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         firestore.collection("classes")
-                .whereArrayContains("StudentList" , firebaseAuth.getCurrentUser().getUid())
+                .whereArrayContains("StudentList" , Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<DocumentSnapshot> document = task.getResult().getDocuments();
+                            List<DocumentSnapshot> document = Objects.requireNonNull(task.getResult()).getDocuments();
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
                             } else {
@@ -96,14 +120,10 @@ public class StudentViewFragment extends Fragment{
                         }
                     }
                 });
-
-        studentDashboardRecyclerView = view.findViewById(R.id.student_dashbosrd_recyclerview);
-        studentDashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         FirestoreRecyclerOptions.Builder<Classes> classesBuilder = new FirestoreRecyclerOptions.Builder<Classes>();
         classesBuilder.setQuery(FirebaseFirestore.getInstance()
                 .collection("classes")
-                .whereArrayContains("StudentList" , FirebaseAuth.getInstance().getCurrentUser().getUid()), Classes.class);
+                .whereArrayContains("StudentList" , Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()), Classes.class);
         FirestoreRecyclerOptions<Classes> options =
                 classesBuilder
                         .build();
@@ -125,16 +145,18 @@ public class StudentViewFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        firebaseAuth = FirebaseAuth.getInstance();
+    }
+    private void showTeacherDashboard(){
         firestore = FirebaseFirestore.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firestore.collection("classes")
-                .whereEqualTo("TeacherUid" , firebaseAuth.getCurrentUser().getUid())
+                .whereEqualTo("TeacherUid" , Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<DocumentSnapshot> document = task.getResult().getDocuments();
+                            List<DocumentSnapshot> document = Objects.requireNonNull(task.getResult()).getDocuments();
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
                             } else {
@@ -148,10 +170,6 @@ public class StudentViewFragment extends Fragment{
                         }
                     }
                 });
-
-        teacherDashboardRecyclerView = view.findViewById(R.id.teacherDashboard_recyclerView);
-        teacherDashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         FirestoreRecyclerOptions.Builder<Classes> classesBuilder2 = new FirestoreRecyclerOptions.Builder<Classes>();
         classesBuilder2.setQuery(FirebaseFirestore.getInstance()
                 .collection("classes")
@@ -178,23 +196,5 @@ public class StudentViewFragment extends Fragment{
                 startActivity(intent);
             }
         });
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-        studentAdapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-        studentAdapter.stopListening();
-    }
-    private void init(View view){
-        viewChangerDots =view.findViewById(R.id.homeMenuBtnOfStudent);
-        studentDashboardTv =view.findViewById(R.id.student_dashboard_textView);
-        teacherDashboardTv =view.findViewById(R.id.teacher_dashboard_textView);
     }
 }
