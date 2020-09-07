@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".homeFragments.StudentViewFragment">
 
@@ -26,12 +25,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="logo"
+                android:paddingLeft="-15dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="-15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingTop="10dp"
-                android:paddingEnd="-15dp"
-                android:paddingLeft="-15dp"
                 app:srcCompat="@drawable/ic_name" />
 
             <TextView
@@ -39,8 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/croissant_one"
-                android:paddingTop="12dp"
                 android:gravity="bottom"
+                android:paddingTop="12dp"
                 android:text="Pathshala"
                 android:textColor="@color/whiteTextColor"
                 android:textSize="30sp"
@@ -71,20 +70,22 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:visibility="visible"
                 android:id="@+id/student_dashboard_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="-9dp"
                 android:gravity="right"
                 android:text="Student Dashboard"
                 android:textColor="@color/robinEggBlue"
-                android:layout_marginRight="15dp"
+                android:visibility="invisible"
                 tools:ignore="RtlHardcoded" />
 
 
@@ -95,46 +96,47 @@
 
 
             <TextView
-                android:visibility="visible"
                 android:id="@+id/teacher_dashboard_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/robinEggBlue"
-                android:gravity="right"
-                android:layout_marginRight="15dp"
-                android:text="Teacher Dashboard"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="-9dp"
+                android:gravity="right"
+                android:text="Teacher Dashboard"
+                android:textColor="@color/robinEggBlue"
+                android:visibility="invisible"
                 tools:ignore="RtlHardcoded" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/teacherDashboard_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="158dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:gravity="center"-->
-<!--        android:textColor="#801A1A1A"-->
-<!--        android:text="You have not created\n any class yet"-->
-<!--        android:visibility="invisible"-->
-<!--        android:textSize="30sp" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/"-->
-<!--        android:layout_width="191dp"-->
-<!--        android:layout_height="158dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:gravity="center"-->
-<!--        android:text="You are not enrolled in any class"-->
-<!--        android:textColor="#651A1A1A"-->
-<!--        android:textSize="30sp"-->
-<!--        android:visibility="invisible" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="158dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:gravity="center"-->
+    <!--        android:textColor="#801A1A1A"-->
+    <!--        android:text="You have not created\n any class yet"-->
+    <!--        android:visibility="invisible"-->
+    <!--        android:textSize="30sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/"-->
+    <!--        android:layout_width="191dp"-->
+    <!--        android:layout_height="158dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="You are not enrolled in any class"-->
+    <!--        android:textColor="#651A1A1A"-->
+    <!--        android:textSize="30sp"-->
+    <!--        android:visibility="invisible" />-->
 
 </LinearLayout>

@@ -2,13 +2,18 @@ package com.jugaru.pathshala.classInterface;
 
 public class UploadVideoLecture {
     String fileName ;
+    String fileTopic ;
+    String fileUnit ;
     String fileUrl ;
 
     public UploadVideoLecture() {
     }
 
-    public UploadVideoLecture(String fileName, String fileUrl) {
+
+    public UploadVideoLecture(String fileName, String fileTopic, String fileUnit, String fileUrl) {
         this.fileName = fileName;
+        this.fileTopic = fileTopic;
+        this.fileUnit = fileUnit;
         this.fileUrl = fileUrl;
     }
 
@@ -28,10 +33,28 @@ public class UploadVideoLecture {
         this.fileUrl = fileUrl;
     }
 
+    public String getFileTopic() {
+        return fileTopic;
+    }
+
+    public void setFileTopic(String fileTopic) {
+        this.fileTopic = fileTopic;
+    }
+
+    public String getFileUnit() {
+        return fileUnit;
+    }
+
+    public void setFileUnit(String fileUnit) {
+        this.fileUnit = fileUnit;
+    }
+
     @Override
     public String toString() {
-        return "UploadVideoLecture{" +
+        return "VideoLecture{" +
                 "fileName='" + fileName + '\'' +
+                ", fileTopic='" + fileTopic + '\'' +
+                ", fileUnit='" + fileUnit + '\'' +
                 ", fileUrl='" + fileUrl + '\'' +
                 '}';
     }

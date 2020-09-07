@@ -2,13 +2,15 @@ package com.jugaru.pathshala.classInterface;
 
 public class UploadClassNotes {
     String fileName ;
+    String fileTopic ;
     String fileUrl ;
 
     public UploadClassNotes() {
     }
 
-    public UploadClassNotes(String fileName, String fileUrl) {
+    public UploadClassNotes(String fileName, String fileTopic, String fileUrl) {
         this.fileName = fileName;
+        this.fileTopic = fileTopic;
         this.fileUrl = fileUrl;
     }
 
@@ -28,10 +30,19 @@ public class UploadClassNotes {
         this.fileUrl = fileUrl;
     }
 
+    public String getFileTopic() {
+        return fileTopic;
+    }
+
+    public void setFileTopic(String fileTopic) {
+        this.fileTopic = fileTopic;
+    }
+
     @Override
     public String toString() {
-        return "UploadClassNotes{" +
+        return "ClassNotes{" +
                 "fileName='" + fileName + '\'' +
+                ", fileTopic='" + fileTopic + '\'' +
                 ", fileUrl='" + fileUrl + '\'' +
                 '}';
     }

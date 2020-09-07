@@ -34,7 +34,7 @@ public class VideoLectureFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private RecyclerView videoLectureRecyclerView ;
     private VideoLectureAdapter videoLectureAdapter;
-
+    private boolean teacher;
     public VideoLectureFragment() {
         // Required empty public constructor
     }
@@ -58,6 +58,7 @@ public class VideoLectureFragment extends Fragment {
         Classes classes = (Classes) Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra("SingleClass");
         if(firebaseAuth.getCurrentUser().getUid().equals(classes.getTeacherUid())){
             floatingActionButton.setVisibility(View.VISIBLE);
+            teacher = true;
         }
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,27 +81,27 @@ public class VideoLectureFragment extends Fragment {
         FirestoreRecyclerOptions<UploadVideoLecture> options =
                 uploadVideoLectureBuilder
                         .build();
-        videoLectureAdapter = new VideoLectureAdapter(options);
+        videoLectureAdapter = new VideoLectureAdapter(options , teacher , getContext() , classUid , getActivity());
         videoLectureRecyclerView.setAdapter(videoLectureAdapter);
 
-        videoLectureAdapter.setOnItemClickListener(new VideoLectureAdapter.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                UploadVideoLecture videoLecture = documentSnapshot.toObject(UploadVideoLecture.class);
-                String url = videoLecture.getFileUrl();
-//                String path = documentSnapshot.getReference().getPath();
-//                Toast.makeText(getContext(), "Position:" + position + "ID:" + id + "Path" + path , Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext() , ClassActivity.class);
-//                intent.putExtra("SingleClass" , (Parcelable) classes);
-//                intent.putExtra("ClassID" , id );
-//                intent.putExtra("ClassDocumentPath" , path );
-//                startActivity(intent);
-                Toast.makeText(getContext(), "Video Clicked", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
-                MKPlayerActivity.configPlayer(getActivity()).play(url);
-            }
-        });
+//        videoLectureAdapter.setOnItemClickListener(new VideoLectureAdapter.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+//                UploadVideoLecture videoLecture = documentSnapshot.toObject(UploadVideoLecture.class);
+//                String url = videoLecture.getFileUrl();
+////                String path = documentSnapshot.getReference().getPath();
+////                Toast.makeText(getContext(), "Position:" + position + "ID:" + id + "Path" + path , Toast.LENGTH_SHORT).show();
+////                Intent intent = new Intent(getContext() , ClassActivity.class);
+////                intent.putExtra("SingleClass" , (Parcelable) classes);
+////                intent.putExtra("ClassID" , id );
+////                intent.putExtra("ClassDocumentPath" , path );
+////                startActivity(intent);
+//                Toast.makeText(getContext(), "Video Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
+//                MKPlayerActivity.configPlayer(getActivity()).play(url);
+//            }
+//        });
     }
     @Override
     public void onStart() {

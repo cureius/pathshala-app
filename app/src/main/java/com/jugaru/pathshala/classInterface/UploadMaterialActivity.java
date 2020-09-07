@@ -39,7 +39,7 @@ import java.util.Objects;
 public class UploadMaterialActivity extends AppCompatActivity {
 
     private CardView selectFileBtn, uploadFileBtn;
-    private EditText fileName;
+    private EditText fileName , fileTopic , fileUnit;
     private TextView uploadFileHeading;
     private ImageView icon;
     StorageReference storageReference;
@@ -54,6 +54,8 @@ public class UploadMaterialActivity extends AppCompatActivity {
         selectFileBtn = findViewById(R.id.select_file_button);
         uploadFileBtn = findViewById(R.id.upload_file_button);
         fileName = findViewById(R.id.file_name_edit_text);
+        fileTopic = findViewById(R.id.file_topic_edit_text);
+        fileUnit = findViewById(R.id.file_part_edit_text);
         icon = findViewById(R.id.upload_file_icon);
         uploadFileHeading = findViewById(R.id.textView_upload_material_heading);
 
@@ -66,6 +68,11 @@ public class UploadMaterialActivity extends AppCompatActivity {
         uploadFileBtn.setCardBackgroundColor(themeColor);
         icon.setColorFilter(themeColor);
 
+        if (heading.equals("Upload Notes")) {
+            fileUnit.setVisibility(View.INVISIBLE);
+        }else {
+            fileUnit.setVisibility(View.VISIBLE);
+        }
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -127,6 +134,8 @@ public class UploadMaterialActivity extends AppCompatActivity {
                         Uri url = uri.getResult();
                         Map<String, Object> map = new HashMap<>();
                         map.put("fileName", fileName.getText().toString());
+                        map.put("fileTopic", fileTopic.getText().toString());
+                        map.put("fileUnit", fileUnit.getText().toString());
                         map.put("fileUrl", url.toString());
                         firebaseFirestore.collection("/classes/" + classUid + "/videosLecture/")
                                 .document(String.valueOf(System.currentTimeMillis())).set(map)
@@ -169,6 +178,7 @@ public class UploadMaterialActivity extends AppCompatActivity {
 //                        UploadClassNotes uploadClassNotes = new UploadClassNotes(fileName.getText().toString(), url.toString());
                         Map<String, Object> map = new HashMap<>();
                         map.put("fileName", fileName.getText().toString());
+                        map.put("fileTopic", fileTopic.getText().toString());
                         map.put("fileUrl", url.toString());
                         firebaseFirestore.collection("/classes/" + classUid + "/classNotes/").document(String.valueOf(System.currentTimeMillis())).set(map)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {

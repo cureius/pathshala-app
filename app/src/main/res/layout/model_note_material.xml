@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:padding="10dp"
-        app:cardBackgroundColor="@color/amaranth"
+        app:cardBackgroundColor="@color/salmon"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
 
@@ -31,7 +31,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="-712dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_insert_drive_file_24"
+                app:srcCompat="@drawable/ic_round_picture_as_pdf_24"
                 tools:ignore="VectorDrawableCompat" />
 
             <LinearLayout
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="33dp"
                 android:layout_toStartOf="@+id/download_notes_btn"
                 android:layout_toEndOf="@+id/notes_icon_model"
                 android:orientation="vertical">
@@ -66,15 +66,27 @@
                     android:textSize="15dp" />
             </LinearLayout>
 
-
+            <ImageButton
+                android:id="@+id/delete_notes_btn"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="3dp"
+                android:layout_toStartOf="@+id/download_notes_btn"
+                android:backgroundTint="@android:color/transparent"
+                android:gravity="end"
+                android:padding="6dp"
+                app:srcCompat="@drawable/ic_round_delete_forever_24"
+                android:tint="@color/whiteTextColor"
+                tools:ignore="VectorDrawableCompat" />
             <ImageButton
                 android:id="@+id/download_notes_btn"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="18dp"
-                android:background="@drawable/btn"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
                 android:gravity="end"
                 android:padding="6dp"
                 app:srcCompat="@android:drawable/stat_sys_download" />

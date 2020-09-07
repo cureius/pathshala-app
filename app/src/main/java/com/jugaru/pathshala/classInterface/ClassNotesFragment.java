@@ -39,6 +39,7 @@ public class ClassNotesFragment extends Fragment {
     private FirebaseFirestore db ;
     private RecyclerView materialRecyclerView ;
     private MyNoteAdapter noteAdapter;
+    private boolean teacher;
 
     private TextView noMaterial ;
     private View header;
@@ -59,7 +60,7 @@ public class ClassNotesFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        noMaterial= view.findViewById(R.id.class_notes_textView);
+//        noMaterial= view.findViewById(R.id.class_notes_textView);
         header = view.findViewById(R.id.class_notes_header);
         firebaseAuth = FirebaseAuth.getInstance();
         super.onViewCreated(view, savedInstanceState);
@@ -67,6 +68,7 @@ public class ClassNotesFragment extends Fragment {
         Classes classes = (Classes) Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra("SingleClass");
         if(firebaseAuth.getCurrentUser().getUid().equals(classes.getTeacherUid())){
             floatingActionButton.setVisibility(View.VISIBLE);
+            teacher = true;
         }
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +92,7 @@ public class ClassNotesFragment extends Fragment {
         FirestoreRecyclerOptions<UploadClassNotes> options =
                 uploadClassNotesBuilder
                         .build();
-        noteAdapter = new MyNoteAdapter(options);
+        noteAdapter = new MyNoteAdapter(options , teacher , getContext() , classes.getClassUid());
         materialRecyclerView.setAdapter(noteAdapter);
     }
     @Override

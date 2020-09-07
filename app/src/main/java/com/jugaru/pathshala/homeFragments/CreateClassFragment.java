@@ -72,7 +72,7 @@ public class CreateClassFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-        themeDefaultColour = 30155229;
+        themeDefaultColour = -12282901;
         themeBar.setBackgroundColor(R.color.unitedNationBlue);
         Log.d(TAG, "onSuccess: " + themeDefaultColour);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -149,8 +149,7 @@ public class CreateClassFragment extends Fragment {
 
                 teacherUid = firebaseAuth.getCurrentUser().getUid();
                 classUid = className.getText().toString().toLowerCase().trim()+"."+teacherUsername;
-                uploadClassDetails();
-
+                checkIdenticalClass();
                 String massage = "Your new class has been created";
                 Toast.makeText(getContext(), massage, Toast.LENGTH_SHORT).show();
 //                progressBar.setVisibility(View.VISIBLE);
@@ -195,6 +194,30 @@ public class CreateClassFragment extends Fragment {
                             String error = task.getException().getMessage();
                             Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
 //                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
+    }
+    private  void checkIdenticalClass(){
+        firestore = FirebaseFirestore.getInstance();
+        firestore.collection("classes")
+                .whereEqualTo("ClassUid", className.getText().toString().toLowerCase().trim()+"."+teacherUsername)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<DocumentSnapshot> document = task.getResult().getDocuments();
+                            if (document.isEmpty()) {
+                                //onSuccess
+                                uploadClassDetails();
+                            } else {
+                                className.setError("class already exists");
+                                return;
+                            }
+                        } else {
+                            String error = task.getException().getMessage();
+                            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

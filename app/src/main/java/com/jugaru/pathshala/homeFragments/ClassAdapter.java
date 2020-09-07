@@ -28,7 +28,7 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<Classes , ClassAdapte
 
         holder.batch.setText("(" + classes.getBatch() + ")");
         holder.classDescription.setText(classes.getClassDescription());
-        holder.classFee.setText(classes.getClassFee());
+        holder.classFee.setText(classes.getClassFee() + "Rs");
         holder.className.setText(classes.getClassName());
         holder.classSubject.setText(classes.getClassSubject());
         holder.classUid.setText(classes.getClassUid());

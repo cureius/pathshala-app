@@ -109,6 +109,7 @@ public class StudentViewFragment extends Fragment{
                             List<DocumentSnapshot> document = Objects.requireNonNull(task.getResult()).getDocuments();
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
+                                studentDashboardTv.setVisibility(View.VISIBLE);
                             } else {
 //                                studentDashboardTv.setVisibility(View.INVISIBLE);
                                 return;
@@ -159,6 +160,7 @@ public class StudentViewFragment extends Fragment{
                             List<DocumentSnapshot> document = Objects.requireNonNull(task.getResult()).getDocuments();
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
+                                teacherDashboardTv.setVisibility(View.VISIBLE);
                             } else {
 //                                teacherDashboardTv.setVisibility(View.INVISIBLE);
                                 return;

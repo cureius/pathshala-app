@@ -1,5 +1,6 @@
 package com.jugaru.pathshala.homeFragments;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -83,8 +84,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-
-
         firebaseUser = firebaseAuth.getCurrentUser();
 
         FirebaseFirestore.getInstance()
@@ -427,5 +426,6 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
         }).check();
     }
+
 
 }

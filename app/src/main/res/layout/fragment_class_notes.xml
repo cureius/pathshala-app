@@ -46,19 +46,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/class_notes_textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Empty"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:gravity="center"/>
-        <!--    <androidx.recyclerview.widget.RecyclerView-->
-        <!--        android:id="@+id/class_notes_recyclerview"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/class_notes_textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="Empty"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"/>-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_class_notes"
             android:layout_width="wrap_content"

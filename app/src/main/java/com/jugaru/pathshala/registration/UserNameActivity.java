@@ -39,6 +39,7 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -215,6 +216,7 @@ public class UserNameActivity extends AppCompatActivity {
                         uploadCollegeName();
                         uploadAbout();
                         uploadOccupation();
+                        uploadClassList();
                     } else {
                         // Handle failures
                         // ...
@@ -235,6 +237,7 @@ public class UserNameActivity extends AppCompatActivity {
             uploadCollegeName();
             uploadAbout();
             uploadOccupation();
+            uploadClassList();
         }
     }
 
@@ -384,6 +387,24 @@ public class UserNameActivity extends AppCompatActivity {
 
         Map<String, Object> map = new HashMap<>();
         map.put("about", about.getText().toString());
+        firestore.collection("user").document(firebaseAuth.getCurrentUser().getUid()).update(map)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!(task.isSuccessful())) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            String error = task.getException().getMessage();
+                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void uploadClassList() {
+
+        ArrayList<String> classList = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("ClassList", classList);
         firestore.collection("user").document(firebaseAuth.getCurrentUser().getUid()).update(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
