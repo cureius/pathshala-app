@@ -1,4 +1,7 @@
-package com.jugaru.pathshala.registration;
+package com.jugaru.pathshala.homeFragments;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -10,9 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
@@ -30,43 +30,45 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
+import com.jugaru.pathshala.registration.UserNameActivity;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class UserNameActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     private CircleImageView profileImageView;
-    private Button createAccountBtn;
-    private EditText username,firstName,lastName,DOB, city,school,college,occupation,about;
+    private Button editDetails;
+    private EditText firstName,lastName,DOB, city,school,college,occupation,about;
     private ProgressBar progressBar;
     private Uri photoUri;
     public final static String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
     private StorageReference storage;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser ;
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private String url = "";
+    private String photoUrl, firstNameString , lastNameString , aboutProfileString , occupationString, addressString , collegeString , dateOfBirthString , schoolString , usernameString;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_name);
+        setContentView(R.layout.activity_edit_profile);
 
         init();
 
@@ -81,19 +83,58 @@ public class UserNameActivity extends AppCompatActivity {
 
             }
         });
+
+
         firebaseUser = firebaseAuth.getCurrentUser();
-        createAccountBtn.setOnClickListener(new View.OnClickListener() {
+
+        FirebaseFirestore.getInstance()
+                .collection("user")
+                .document(firebaseAuth.getCurrentUser().getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getId());
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getData());
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getString("FirstName"));
+
+                        photoUrl = documentSnapshot.getString("profile_Url");
+                        firstNameString = documentSnapshot.getString("FirstName");
+                        lastNameString = documentSnapshot.getString("LastName");
+                        aboutProfileString = documentSnapshot.getString("about");
+                        occupationString = documentSnapshot.getString("occupation");
+                        addressString = documentSnapshot.getString("city");
+                        collegeString = documentSnapshot.getString("college");
+                        dateOfBirthString = documentSnapshot.getString("DateOfBirth");
+                        schoolString = documentSnapshot.getString("school");
+                        usernameString = documentSnapshot.getString("username");
+
+                        firstName.setText(firstNameString);
+                        lastName.setText(lastNameString);
+                        DOB.setText(dateOfBirthString);
+                        city.setText(addressString);
+                        school.setText(schoolString);
+                        college.setText(collegeString);
+                        occupation.setText(occupationString);
+                        about.setText(aboutProfileString);
+
+                        if (!(photoUrl.isEmpty())) {
+                            Glide
+                                    .with(EditProfileActivity.this)
+                                    .load(photoUrl)
+                                    .into(profileImageView);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+        editDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username.setError(null);
-                if (username.getText().toString().isEmpty() || username.getText().toString().length() < 3) {
-                    username.setError("At least 3 characters required  ");
-                    return;
-                }
-                if (!username.getText().toString().matches(USERNAME_PATTERN)) {
-                    username.setError("Give username using only  \"a to z , _ ,  and 0 to 9\" ");
-                    return;
-                }
                 if (firstName.getText().toString().isEmpty()) {
                     firstName.setError("First name is required");
                     return;
@@ -125,46 +166,25 @@ public class UserNameActivity extends AppCompatActivity {
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
-                firestore = FirebaseFirestore.getInstance();
-                firestore.collection("user")
-                        .whereEqualTo("username", username.getText().toString())
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<DocumentSnapshot> document = task.getResult().getDocuments();
-                            if (document.isEmpty()) {
-                                uploadData();
-                            } else {
-                                progressBar.setVisibility(View.INVISIBLE);
-                                username.setError("username already exists");
-                                return;
-                            }
-                        } else {
-                            String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                });
+                uploadData();
+                Intent intent = new Intent(EditProfileActivity.this , MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
-
     private void init() {
-        profileImageView = findViewById(R.id.profile_image);
-        createAccountBtn = findViewById(R.id.create_account_btn);
-        progressBar = findViewById(R.id.progressBar);
-        username = findViewById(R.id.username);
-        firstName = findViewById(R.id.first_name);
-        lastName = findViewById(R.id.last_name);
-        DOB = findViewById(R.id.DOB);
-        city = findViewById(R.id.place);
-        school = findViewById(R.id.school_name);
-        college = findViewById(R.id.college_name);
-        occupation = findViewById(R.id.occupation);
-        about = findViewById(R.id.about);
+        profileImageView = findViewById(R.id.profile_image_edit);
+        editDetails = findViewById(R.id.edit_btn);
+        progressBar = findViewById(R.id.progressBar_edit);
+        firstName = findViewById(R.id.first_name_edit);
+        lastName = findViewById(R.id.last_name_edit);
+        DOB = findViewById(R.id.DOB_edit);
+        city = findViewById(R.id.place_edit);
+        school = findViewById(R.id.school_name_edit);
+        college = findViewById(R.id.college_name_edit);
+        occupation = findViewById(R.id.occupation_edit);
+        about = findViewById(R.id.about_edit);
     }
 
     private void selectImage() {
@@ -181,7 +201,7 @@ public class UserNameActivity extends AppCompatActivity {
 
     private void uploadData() {
         if (photoUri != null) {////upload profile with photo
-            final StorageReference ref = storage.child("profile/" + firebaseAuth.getCurrentUser().getUid());
+            final StorageReference ref = storage.child("profile/" + Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
             UploadTask uploadTask = ref.putFile(photoUri);
 
             Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -189,11 +209,12 @@ public class UserNameActivity extends AppCompatActivity {
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        String error = task.getException().getMessage();
-                        Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                        String error = Objects.requireNonNull(task.getException()).getMessage();
+                        Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
 
                         throw task.getException();
                     }
+
                     // Continue with the task to get the download URL
                     return ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -206,7 +227,6 @@ public class UserNameActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
-                        uploadUsername();
                         uploadFirstName();
                         uploadLastName();
                         uploadCity();
@@ -220,13 +240,13 @@ public class UserNameActivity extends AppCompatActivity {
                         // ...
                         progressBar.setVisibility(View.INVISIBLE);
                         String error = task.getException().getMessage();
-                        Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
         else {
-            uploadUsername();
+
             uploadFirstName();
             uploadLastName();
             uploadCity();
@@ -237,30 +257,6 @@ public class UserNameActivity extends AppCompatActivity {
             uploadOccupation();
         }
     }
-
-    private void uploadUsername() {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("username", username.getText().toString());
-        map.put("profile_Url", url);
-
-        firestore.collection("user").document(firebaseAuth.getCurrentUser().getUid()).update(map)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Intent myIntent = new Intent(UserNameActivity.this, MainActivity.class);
-                            startActivity(myIntent);
-                            finish();
-                        } else {
-                            progressBar.setVisibility(View.INVISIBLE);
-                            String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
     private void uploadFirstName() {
 
         Map<String, Object> map = new HashMap<>();
@@ -272,12 +268,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadLastName() {
 
         Map<String, Object> map = new HashMap<>();
@@ -289,12 +284,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadDOB() {
 
         Map<String, Object> map = new HashMap<>();
@@ -306,12 +300,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadCity() {
 
         Map<String, Object> map = new HashMap<>();
@@ -323,12 +316,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadSchoolName() {
 
         Map<String, Object> map = new HashMap<>();
@@ -340,12 +332,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadCollegeName() {
 
         Map<String, Object> map = new HashMap<>();
@@ -357,12 +348,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadOccupation() {
 
         Map<String, Object> map = new HashMap<>();
@@ -374,12 +364,11 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     private void uploadAbout() {
 
         Map<String, Object> map = new HashMap<>();
@@ -391,7 +380,7 @@ public class UserNameActivity extends AppCompatActivity {
                         if (!(task.isSuccessful())) {
                             progressBar.setVisibility(View.INVISIBLE);
                             String error = task.getException().getMessage();
-                            Toast.makeText(UserNameActivity.this, error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -430,7 +419,7 @@ public class UserNameActivity extends AppCompatActivity {
                 if (report.areAllPermissionsGranted()) {
                     selectImage();
                 } else {
-                    Toast.makeText(UserNameActivity.this, "Please give the permission", LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Please give the permission", LENGTH_SHORT).show();
                 }
             }
 
@@ -438,4 +427,5 @@ public class UserNameActivity extends AppCompatActivity {
             public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
         }).check();
     }
+
 }

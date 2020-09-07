@@ -206,7 +206,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent profileTOUsernameIntent = new Intent(getContext(), UserNameActivity.class);
+                Intent profileTOUsernameIntent = new Intent(getContext(), EditProfileActivity.class);
                 startActivity(profileTOUsernameIntent);
                 getActivity().finish();
 
