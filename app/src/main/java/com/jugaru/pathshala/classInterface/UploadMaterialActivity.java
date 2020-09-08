@@ -160,6 +160,14 @@ public class UploadMaterialActivity extends AppCompatActivity {
                         progressDialog.show();
                     }
                 });
+        DatabaseReference referenceReal = FirebaseDatabase.getInstance().getReference();
+
+        HashMap<String , Object> hashMap = new HashMap<>();
+        hashMap.put("className" , classUid);
+        hashMap.put("content" , fileName.getText().toString() + "|" + fileTopic.getText().toString());
+        hashMap.put("type" , "video");
+
+        referenceReal.child("Notifications").push().setValue(hashMap);
     }
 
     private void uploadFile(Uri data) {
@@ -202,6 +210,14 @@ public class UploadMaterialActivity extends AppCompatActivity {
                         progressDialog.show();
                     }
                 });
+        DatabaseReference referenceReal = FirebaseDatabase.getInstance().getReference();
+
+        HashMap<String , Object> hashMap = new HashMap<>();
+        hashMap.put("className" , classUid);
+        hashMap.put("content" , fileName.getText().toString() + "|" + fileTopic.getText().toString());
+        hashMap.put("type" , "notes");
+
+        referenceReal.child("Notifications").push().setValue(hashMap);
     }
 
 }
