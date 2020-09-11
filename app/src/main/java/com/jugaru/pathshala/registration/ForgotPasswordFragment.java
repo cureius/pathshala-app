@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jugaru.pathshala.R;
 
+import java.util.Objects;
+
 import static com.jugaru.pathshala.registration.CreateAccountFragment.VALID_EMAIL_ADDRESS_REGEX;
 
 public class ForgotPasswordFragment extends Fragment {
@@ -59,7 +61,7 @@ public class ForgotPasswordFragment extends Fragment {
                             if(task.isSuccessful()){
                                 progressBar.setVisibility(View.VISIBLE);
                                 Toast.makeText(getContext(), "Password reset email sent successfully" , Toast.LENGTH_LONG).show();
-                                getActivity().onBackPressed();
+                                Objects.requireNonNull(getActivity()).onBackPressed();
                             }else {
                                 String error = task.getException().getMessage();
                                 email.setError(error);

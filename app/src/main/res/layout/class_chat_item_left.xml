@@ -9,9 +9,11 @@
         android:id="@+id/chat_profile_image"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_alignBottom="@+id/message_chat"
         android:src="@drawable/profileplaceholder" />
 
     <LinearLayout
+        android:id="@+id/message_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/chat_profile_image"

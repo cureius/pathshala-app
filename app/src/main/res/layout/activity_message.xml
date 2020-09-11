@@ -17,29 +17,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
+        <RelativeLayout
+            android:id="@+id/profile_touch_pad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic_chat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:layout_margin="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/profileplaceholder"
+                app:civ_border_color="@color/unitedNationBlue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlHardcoded" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_pic_chat"
-            android:layout_width="55dp"
-            android:layout_height="57dp"
-            android:layout_gravity="left"
-            android:layout_margin="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/profileplaceholder"
-            app:civ_border_color="@color/unitedNationBlue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlHardcoded" />
-        <TextView
-            android:id="@+id/chat_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:paddingTop="17dp"
-            android:text="USERNAME"
-            android:textColor="@color/whiteTextColor"
-            android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/chat_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/profile_pic_chat"
+                android:text="USERNAME"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="25sp"
+                tools:ignore="UnknownId" />
+
+            <TextView
+                android:id="@+id/chat_instruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chat_username"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@id/profile_pic_chat"
+                android:text="Tap to view profile details"
+                android:textColor="@color/black_overlay"
+                android:textSize="12sp" />
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView

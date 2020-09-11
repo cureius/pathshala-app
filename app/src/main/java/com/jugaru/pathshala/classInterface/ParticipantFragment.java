@@ -1,9 +1,11 @@
 package com.jugaru.pathshala.classInterface;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,9 +44,6 @@ import static android.content.ContentValues.TAG;
 public class ParticipantFragment extends Fragment {
     private TextView teacherName , teacherUsername ;
     private CircleImageView teacherPic ;
-    private FirebaseAuth firebaseAuth ;
-    private FirebaseUser firebaseUser;
-    private FirebaseFirestore db;
     private String photoUrl ;
     private static ArrayList<String> listOfStudents = new ArrayList<String>();
     private ArrayList<UserProfile> list = new ArrayList<>();
@@ -69,22 +68,24 @@ public class ParticipantFragment extends Fragment {
         teacherName = view.findViewById(R.id.user);
         teacherUsername = view.findViewById(R.id.profile_username_model_teacher);
         teacherPic = view.findViewById(R.id.profile_pic_model_teacher);
+        ConstraintLayout teacherView = view.findViewById(R.id.teacher_touch_pad);
         participantRecyclerView = view.findViewById(R.id.class_participant_recyclerview);
-        Classes classes = (Classes)getActivity().getIntent().getParcelableExtra("SingleClass");
+        Classes classes = (Classes) Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra("SingleClass");
+        assert classes != null;
         teacherHeading.setTextColor(classes.getClassThemeColor());
         studentHeading.setTextColor(classes.getClassThemeColor());
-        String classTeacher = classes.getTeacherUid();
+        final String classTeacher = classes.getTeacherUid();
 
         participantRecyclerView.setHasFixedSize(true);
         participantRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         StorageReference storage = FirebaseStorage.getInstance().getReference();
 
         showTeacherDetails(classTeacher);
         String classUid = classes.getClassUid();
 
-        db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         if (list.size() > 0)
             list.clear();
         db = FirebaseFirestore.getInstance();
@@ -114,16 +115,22 @@ public class ParticipantFragment extends Fragment {
                         Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
-//        Log.d(TAG , "onSuccessListMain: " +profileAdapter.getItemCount());
+
+        teacherView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chatWithTeacher(classTeacher);
+            }
+        });
     }
-    private void showTeacherDetails(String classTeacher){
+    private void showTeacherDetails(final String classTeacher){
         FirebaseFirestore.getInstance()
                 .collection("user")
                 .document(classTeacher)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    public void onSuccess(final DocumentSnapshot documentSnapshot) {
                         Log.d(TAG , "onSuccess: " + documentSnapshot.getId());
                         Log.d(TAG , "onSuccess: " + documentSnapshot.getData());
                         Log.d(TAG , "onSuccess: " + documentSnapshot.getString("FirstName"));
@@ -148,5 +155,32 @@ public class ParticipantFragment extends Fragment {
 
                     }
                 });
+
+    }
+    private void chatWithTeacher(final String classTeacher){
+        FirebaseFirestore.getInstance()
+                .collection("user")
+                .document(classTeacher)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(final DocumentSnapshot documentSnapshot) {
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getId());
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getData());
+                        Log.d(TAG , "onSuccess: " + documentSnapshot.getString("FirstName"));
+                        Intent i = new Intent(getContext() , MessageActivity.class);
+                        i.putExtra("username" ,documentSnapshot.getString("username"));
+                        i.putExtra("dp" , documentSnapshot.getString("profile_Url"));
+                        i.putExtra("userId" , classTeacher);
+                        startActivity(i);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
     }
 }

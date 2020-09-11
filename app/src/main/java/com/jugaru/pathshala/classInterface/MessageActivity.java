@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ import static android.content.ContentValues.TAG;
 public class MessageActivity extends AppCompatActivity {
     CircleImageView profilePic;
     TextView userName;
-
+    RelativeLayout touchProfile;
     RecyclerView recyclerView;
     EditText msg_edittext;
     ImageButton sendBtn;
@@ -63,6 +64,7 @@ public class MessageActivity extends AppCompatActivity {
         userName = findViewById(R.id.chat_username);
         sendBtn = findViewById(R.id.btn_send);
         msg_edittext = findViewById(R.id.text_send);
+        touchProfile = findViewById(R.id.profile_touch_pad);
         recyclerView = findViewById(R.id.chat_recyclerview);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -107,6 +109,15 @@ public class MessageActivity extends AppCompatActivity {
                 }
 
                 msg_edittext.setText("");
+            }
+        });
+
+        touchProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MessageActivity.this , UserProfileActivity.class);
+                i.putExtra("userId" ,userid);
+                startActivity(i);
             }
         });
     }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
+import com.jugaru.pathshala.classInterface.AboutAppFragment;
 import com.jugaru.pathshala.classInterface.ClassActivity;
 import com.jugaru.pathshala.classInterface.ParticipantFragment;
 
@@ -49,6 +51,7 @@ public class StudentViewFragment extends Fragment{
     private ClassAdapter studentAdapter;
     private RecyclerView teacherDashboardRecyclerView ;
     private ClassAdapter adapter;
+    private ImageView viewChangerDots;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +68,12 @@ public class StudentViewFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-//        viewChangerDots.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((MainActivity)getActivity()).setFragmentTeacherStudent(new TeacherViewFragment());
-//            }
-//        });
+        viewChangerDots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).setFragmentStudentAbout(new AboutAppFragment());
+            }
+        });
         showStudentDashboard();
         showTeacherDashboard();
     }
@@ -87,7 +90,7 @@ public class StudentViewFragment extends Fragment{
         studentAdapter.stopListening();
     }
     private void init(View view){
-        ImageView viewChangerDots = view.findViewById(R.id.homeMenuBtnOfStudent);
+        viewChangerDots = view.findViewById(R.id.homeMenuBtnOfStudent);
         studentDashboardTv =view.findViewById(R.id.student_dashboard_textView);
         teacherDashboardTv =view.findViewById(R.id.teacher_dashboard_textView);
         studentDashboardRecyclerView = view.findViewById(R.id.student_dashbosrd_recyclerview);

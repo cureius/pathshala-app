@@ -3,6 +3,7 @@ package com.jugaru.pathshala.classInterface;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -11,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,9 +20,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.jugaru.pathshala.R;
 import com.jugaru.pathshala.homeFragments.Classes;
 
@@ -132,15 +142,78 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
                 }else {
                     setFragment(3);
                 }
-
                 break;
             case  R.id.nav_participant:
                 setFragment(5);
                 break;
+            case  R.id.nav_leave_class:
+                if(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid().equals(classes.getTeacherUid())){
+                    endClass();
+                }else {
+                    leaveClass();
+                }
+                break;
         }
-
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
+    }
+    private void leaveClass(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ClassActivity.this, R.style.MyDialogTheme) ;
+        dialog.setTitle("Leave Class ?");
+        dialog.setIcon(R.drawable.ic_round_delete_forever_24);
+        dialog.setMessage("Do you really want to leave this class ");
+        dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseFirestore.getInstance()
+                .collection("classes")
+                .document(classes.getClassUid())
+                .update("StudentList" , FieldValue.arrayRemove(firebaseAuth.getCurrentUser().getUid()))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(), "You Leaved The Class", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
+    }
+    private void endClass(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ClassActivity.this, R.style.MyDialogTheme) ;
+        dialog.setTitle("Terminate Class ?");
+        dialog.setIcon(R.drawable.ic_round_delete_forever_24);
+        dialog.setMessage("Do you really want to end this class ");
+        dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseFirestore.getInstance()
+                        .collection("classes")
+                        .document(classes.getClassUid())
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getApplicationContext(), "You Deleted The Class", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
     }
 }

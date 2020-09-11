@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".homeFragments.EditProfileActivity"></activity>
+        <activity android:name=".classInterface.UserProfileActivity"></activity>
+        <activity android:name=".homeFragments.EditProfileActivity" />
         <activity android:name=".classInterface.MessageActivity" />
         <activity android:name=".classInterface.NotesViewerActivity" />
         <activity android:name=".classInterface.UploadMaterialActivity" />
