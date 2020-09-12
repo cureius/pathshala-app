@@ -6,7 +6,8 @@
             <solid android:color="@color/antiFlashWhite"/>
         </shape>
     </item>
-    <item>
+    <item
+        android:width="5000dp">
         <bitmap android:src="@drawable/icon"
             android:gravity="center">
 
