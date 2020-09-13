@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +69,9 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
         assert classes != null;
         toolbar.setBackgroundColor(classes.getClassThemeColor());
         toolbar.setTitle(classes.getClassName());
+
+        Window window = getWindow();
+        window.setStatusBarColor(classes.getClassThemeColor());
 
         Menu menu = navigationView.getMenu();
         header = navigationView.getHeaderView(0);
@@ -195,7 +199,7 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference file = FirebaseStorage.getInstance().getReference("classes/"+classUid);
+                StorageReference file = FirebaseStorage.getInstance().getReference("/classes/"+classes.getClassUid()+"/");
                 file.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -207,16 +211,17 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
                         Toast.makeText(ClassActivity.this, "Unable to Delete File", Toast.LENGTH_SHORT).show();
                     }
                 });
-                FirebaseFirestore.getInstance()
-                        .collection("classes")
-                        .document(classes.getClassUid())
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getApplicationContext(), "You Deleted The Class", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+//                FirebaseFirestore.getInstance()
+//                        .collection("classes")
+//                        .document(classes.getClassUid())
+//                        .delete()
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Toast.makeText(getApplicationContext(), "You Deleted The Class", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+
 //                StorageReference deleteRef = storage.getReference("classes/"+classUid+"/");
 //                deleteRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
 //                    @Override
