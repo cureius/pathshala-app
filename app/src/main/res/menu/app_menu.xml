@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="About"
+        android:id="@+id/about_app"
+        android:icon="@drawable/ic_outline_info_24"
+        android:iconTint="@color/safetyOrange"
+        app:showAsAction="always"/>
+    <item
+        android:title="Share"
+        android:id="@+id/share_app"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:iconTint="@color/white"
+        app:showAsAction="always"/>
+</menu>

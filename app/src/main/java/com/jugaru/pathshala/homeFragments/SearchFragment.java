@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +32,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.jugaru.pathshala.MainActivity;
 import com.jugaru.pathshala.R;
+import com.jugaru.pathshala.classInterface.ProfileAdapter;
+import com.jugaru.pathshala.classInterface.UserProfile;
 import com.jugaru.pathshala.registration.UserNameActivity;
 import com.squareup.picasso.Picasso;
 
@@ -38,12 +42,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
 public class SearchFragment extends Fragment {
 
-    private EditText searchBar;
+    private AutoCompleteTextView searchBar;
     private ImageView searchBtn;
     private RecyclerView searchClassRecyclerview;
     private Button joinBtn;
@@ -71,7 +76,29 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        final List<String> codeList = new ArrayList<>();
+
         init(view);
+        FirebaseFirestore.getInstance()
+                .collection("classes")
+                .whereLessThan("ClassThemeColor" , 0)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot documentSnapshot: task.getResult()){
+                            codeList.add((String) documentSnapshot.get("ClassUid"));
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()), android.R.layout.simple_list_item_1 , codeList);
+                        searchBar.setAdapter(adapter);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +164,7 @@ public class SearchFragment extends Fragment {
                                         });
                             }
                         });
+
                 FirebaseFirestore.getInstance()
                         .collection("classes")
                         .document(searchedClassUid)
@@ -169,6 +197,7 @@ public class SearchFragment extends Fragment {
                                         });
                             }
                         });
+
             }
         });
     }

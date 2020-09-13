@@ -53,14 +53,9 @@
         <menu>
 
             <item
-                android:id="@+id/nav_rate_us"
-                android:icon="@drawable/ic_baseline_rate_review_24"
-                android:title="Rate Us" />
-
-            <item
                 android:id="@+id/nav_leave_class"
                 android:icon="@drawable/ic_round_delete_24"
-                android:title="Leave Class" />
+                android:title="Delete Class" />
 
 
 

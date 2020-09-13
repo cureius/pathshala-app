@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ import com.jugaru.pathshala.registration.UserNameActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.jugaru.pathshala.R.menu.app_menu;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,6 +108,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(app_menu , menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        if(item.getItemId() == R.id.share_app){
+//
+//        }else {
+//            return super.onOptionsItemSelected(item);
+//        }
+//        return true;
+//    }
 
     public void setFragment(int position){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

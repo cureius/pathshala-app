@@ -22,12 +22,10 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:contentDescription="logo"
-                android:paddingLeft="-15dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="-15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,8 +57,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_more_vert_24"
-                tools:ignore="VectorDrawableCompat" />
+                app:srcCompat="@drawable/ic_outline_info_24"
+                tools:ignore="VectorDrawableCompat"
+                app:tint="@color/safetyOrange" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

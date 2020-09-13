@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/profileBackground"
     android:fitsSystemWindows="true"
-    tools:context="com.jugaru.pathshala.MainActivity"
-    android:background="@color/profileBackground">
+    tools:context="com.jugaru.pathshala.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -22,20 +21,20 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/unitedNationBlue"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:expandedTitleTextAppearance="@style/TransparentText">
+            app:expandedTitleTextAppearance="@style/TransparentText"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:background="@drawable/profile_bk"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:id="@+id/linearLayout"
-                android:background="@drawable/profile_bk">
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_picture"
@@ -55,8 +54,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User Name"
+                    android:textColor="@color/whiteTextColor"
                     android:textSize="28dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_profile_about"
@@ -64,21 +64,21 @@
                     android:layout_height="wrap_content"
                     android:text="About Yourself"
                     android:textSize="12dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="20dp"
-                    android:background="@color/profileBackground">
+                    android:background="@color/profileBackground"
+                    android:gravity="center">
 
                     <View
-                        android:layout_alignParentTop="true"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:background="@drawable/profile_bk"/>
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/profile_bk" />
 
                     <TextView
                         android:id="@+id/edit_profile"
@@ -104,21 +104,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/headerText"
-                    android:text="Account Info"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:text="Account Info" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/nameImageView"
-                        android:src="@drawable/ic_name"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/ic_name"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
@@ -129,26 +130,28 @@
 
                     <TextView
                         android:id="@+id/nameProfileTextView"
-                        android:text="@string/loading_details"
-                        android:layout_toRightOf="@id/nameImageView"
+                        style="@style/profileDetailsMiniText"
                         android:layout_below="@id/nameHeading"
-                        style="@style/profileDetailsMiniText" />
+                        android:layout_toRightOf="@id/nameImageView"
+                        android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/mobileImageView"
-                        android:src="@drawable/ic_mobile"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/ic_mobile"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/mobileHeading"
-                        android:text="Mobile"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/mobileImageView"
-                        style="@style/profileDetailsTextMain"/>
+                        android:text="Mobile" />
 
                     <TextView
                         android:id="@+id/numberProfileTextView"
@@ -159,20 +162,22 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/emailImageView"
-                        android:src="@drawable/ic_email"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/ic_email"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/emailHeading"
-                        android:text="Email"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/emailImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="Email" />
 
                     <TextView
                         android:id="@+id/emailProfileTextView"
@@ -183,20 +188,22 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/addressImageView"
-                        android:src="@drawable/ic_address"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/ic_address"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/addressHeading"
-                        android:text="Address"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/addressImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="Address" />
 
                     <TextView
                         android:id="@+id/addressProfileTextView"
@@ -207,20 +214,22 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/dobImageView"
-                        android:src="@drawable/ic_dob"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/ic_dob"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/DOB_heading"
-                        android:text="D.O.B"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/dobImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="D.O.B" />
 
                     <TextView
                         android:id="@+id/DOBProfileTextView"
@@ -231,20 +240,22 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/schoolImageView"
-                        android:src="@drawable/institite"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/institite"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/schoolHeader"
-                        android:text="School"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/schoolImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="School" />
 
                     <TextView
                         android:id="@+id/schoolProfileTextView"
@@ -255,20 +266,22 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/collegeImageView"
-                        android:src="@drawable/gradguatperson"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/gradguatperson"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/collegeHeading"
-                        android:text="College"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/collegeImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="College" />
 
                     <TextView
                         android:id="@+id/collegeProfileTextView"
@@ -279,20 +292,22 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/workImageView"
-                        android:src="@drawable/suitcasework"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/suitcasework"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/workHeading"
-                        android:text="Occupation"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/workImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="Occupation" />
 
                     <TextView
                         android:id="@+id/workProfileTextView"
@@ -303,23 +318,25 @@
                         android:text="@string/loading_details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout
                     android:id="@+id/logoutProfileRelativeLayout"
                     style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/logOutImageView"
-                        android:src="@drawable/logout"
-                        android:padding="5dp"
                         style="@style/profileDetailsImage"
+                        android:padding="5dp"
+                        android:src="@drawable/logout"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/logoutHeading"
-                        android:text="Log Out"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/logOutImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="Log Out" />
 
                     <TextView
                         style="@style/profileDetailsMiniText"
@@ -329,47 +346,51 @@
                         android:text="Click here to log out" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout
                     android:id="@+id/deleteProfileRelativeLayout"
                     style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/deleteAccountImageView"
-                        android:src="@drawable/ic_round_delete_forever_24"
                         style="@style/profileDetailsImage"
+                        android:src="@drawable/ic_round_delete_forever_24"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/deleteHeading"
-                        android:text="Delete Account"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/deleteAccountImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="Delete Account" />
 
                     <TextView
-                        android:text="Once deleted , that will never be retrieved"
-                        android:layout_toRightOf="@id/deleteAccountImageView"
+                        style="@style/profileDetailsMiniText"
                         android:layout_below="@+id/deleteHeading"
-                        style="@style/profileDetailsMiniText" />
+                        android:layout_toRightOf="@id/deleteAccountImageView"
+                        android:text="Once deleted , that will never be retrieved" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
                 <RelativeLayout
                     android:id="@+id/editProfileRelativeLayout"
                     style="@style/profileDetailsLayout">
+
                     <ImageView
                         android:id="@+id/editImageView"
-                        android:src="@drawable/editpen"
-                        android:padding="5dp"
                         style="@style/profileDetailsImage"
+                        android:padding="5dp"
+                        android:src="@drawable/editpen"
                         app:tint="@color/unitedNationBlue" />
 
                     <TextView
                         android:id="@+id/edit_profile_bold_text"
-                        android:text="Edit"
+                        style="@style/profileDetailsTextMain"
                         android:layout_toRightOf="@id/editImageView"
-                        style="@style/profileDetailsTextMain" />
+                        android:text="Edit" />
 
                     <TextView
                         style="@style/profileDetailsMiniText"
@@ -379,16 +400,13 @@
                         android:text="Click here tp edit profile details" />
 
                 </RelativeLayout>
+
                 <View style="@style/profileDetailsView" />
 
             </LinearLayout>
 
         </ScrollView>
 
-
-
     </androidx.core.widget.NestedScrollView>
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

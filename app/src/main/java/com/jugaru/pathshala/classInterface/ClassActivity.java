@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -149,6 +150,14 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case  R.id.nav_participant:
                 setFragment(5);
+                break;
+            case  R.id.nav_share_class:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT , "Class Code Is: " + classes.getClassUid() +
+                        "\nPlease Join The Class Using The Given Class Code, In PATHSHALA App");
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
                 break;
             case  R.id.nav_leave_class:
                 if(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid().equals(classes.getTeacherUid())){
