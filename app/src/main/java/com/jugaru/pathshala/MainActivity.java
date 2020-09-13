@@ -24,6 +24,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.jugaru.pathshala.classInterface.AboutAppFragment;
 import com.jugaru.pathshala.homeFragments.AddClassFragment;
 import com.jugaru.pathshala.homeFragments.CreateClassFragment;
 import com.jugaru.pathshala.homeFragments.NotificationFragment;
@@ -114,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
     public void setFragmentStudentAbout(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        if(fragment instanceof AboutAppFragment){
+            fragmentTransaction.addToBackStack(null);
+        }
         fragmentTransaction.replace(frameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }

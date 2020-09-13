@@ -194,6 +194,19 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
         dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference file = FirebaseStorage.getInstance().getReference("classes/"+classUid);
+                file.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(ClassActivity.this, "File Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ClassActivity.this, "Unable to Delete File", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 FirebaseFirestore.getInstance()
                         .collection("classes")
                         .document(classes.getClassUid())
@@ -204,6 +217,13 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
                                 Toast.makeText(getApplicationContext(), "You Deleted The Class", Toast.LENGTH_SHORT).show();
                             }
                         });
+//                StorageReference deleteRef = storage.getReference("classes/"+classUid+"/");
+//                deleteRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Toast.makeText(getApplicationContext(), "You Deleted The Class Data", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
             }
         });

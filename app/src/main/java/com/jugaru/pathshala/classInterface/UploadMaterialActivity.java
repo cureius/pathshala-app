@@ -124,7 +124,7 @@ public class UploadMaterialActivity extends AppCompatActivity {
         progressDialog.setTitle("Uploading.....");
         progressDialog.show();
         final String classUid = getIntent().getStringExtra("classUid");
-        StorageReference reference = storageReference.child("classes/videoLecture/" + System.currentTimeMillis() + ".mp4");
+        StorageReference reference = storageReference.child("classes/"+classUid+"/videoLecture/" + System.currentTimeMillis() + ".mp4");
         reference.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -175,7 +175,7 @@ public class UploadMaterialActivity extends AppCompatActivity {
         progressDialog.setTitle("Uploading.....");
         progressDialog.show();
         final String classUid = getIntent().getStringExtra("classUid");
-        StorageReference reference = storageReference.child("classes/classNote/" + System.currentTimeMillis() + ".pdf");
+        StorageReference reference = storageReference.child("classes/"+classUid+"/classNote/" + System.currentTimeMillis() + ".pdf");
         reference.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
