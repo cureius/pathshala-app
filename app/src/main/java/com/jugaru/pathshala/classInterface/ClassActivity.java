@@ -203,48 +203,35 @@ public class ClassActivity extends AppCompatActivity implements NavigationView.O
         AlertDialog.Builder dialog = new AlertDialog.Builder(ClassActivity.this, R.style.MyDialogTheme) ;
         dialog.setTitle("Terminate Class ?");
         dialog.setIcon(R.drawable.ic_round_delete_forever_24);
-        dialog.setMessage("Do you really want to end this class ");
-        dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference file = FirebaseStorage.getInstance().getReference("/classes/"+classes.getClassUid()+"/");
-                file.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(ClassActivity.this, "File Deleted", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ClassActivity.this, "Unable to Delete File", Toast.LENGTH_SHORT).show();
-                    }
-                });
-//                FirebaseFirestore.getInstance()
-//                        .collection("classes")
-//                        .document(classes.getClassUid())
-//                        .delete()
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Toast.makeText(getApplicationContext(), "You Deleted The Class", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-
-//                StorageReference deleteRef = storage.getReference("classes/"+classUid+"/");
-//                deleteRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Toast.makeText(getApplicationContext(), "You Deleted The Class Data", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-            }
-        });
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialog.setMessage("Please Delete All Class Notes & Lecture First \nDo you really want to end this class ");
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+            }
+        });
+        dialog.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                FirebaseFirestore.getInstance()
+                        .collection("classes")
+                        .document(classes.getClassUid())
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getApplicationContext(), "You Deleted The Class", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+//delete the data of class
+                StorageReference deleteRef = FirebaseStorage.getInstance().getReference("classes/"+classUid+"/");
+                deleteRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(), "You Deleted The Class Data", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         AlertDialog alertDialog = dialog.create();
