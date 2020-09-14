@@ -102,5 +102,13 @@
         android:background="@drawable/btn"
         android:layout_margin="5dp"
         android:text="Join" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search by Class Code here \nTo join the class"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="200dp"/>
 
 </LinearLayout>

@@ -47,7 +47,7 @@ public class ClassChatFragment extends Fragment {
     FirebaseFirestore firestore;
     DatabaseReference reference;
     Intent intent;
-
+    TextView classChat;
     ClassMessageAdapter classMessageAdapter;
     List<ClassChat> mchat ;
     public ClassChatFragment() {
@@ -71,6 +71,7 @@ public class ClassChatFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sendBtn = view.findViewById(R.id.btn_send_class);
         msg_edittext = view.findViewById(R.id.text_send_class);
+        classChat = view.findViewById(R.id.insChat1);
         recyclerView = view.findViewById(R.id.class_chat_recyclerview);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -132,6 +133,9 @@ public class ClassChatFragment extends Fragment {
                     }
                     classMessageAdapter = new ClassMessageAdapter(getContext() , mchat );
                     recyclerView.setAdapter(classMessageAdapter);
+                }
+                if(mchat.isEmpty()){
+                    classChat.setVisibility(View.VISIBLE);
                 }
             }
             @Override

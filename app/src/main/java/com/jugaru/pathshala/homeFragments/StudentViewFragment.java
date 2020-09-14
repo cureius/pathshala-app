@@ -47,6 +47,8 @@ public class StudentViewFragment extends Fragment{
     private FirebaseFirestore firestore;
     private TextView studentDashboardTv;
     private TextView teacherDashboardTv;
+    private TextView ins1;
+    private TextView ins2;
     private RecyclerView studentDashboardRecyclerView ;
     private ClassAdapter studentAdapter;
     private RecyclerView teacherDashboardRecyclerView ;
@@ -93,6 +95,8 @@ public class StudentViewFragment extends Fragment{
         viewChangerDots = view.findViewById(R.id.homeMenuBtnOfStudent);
         studentDashboardTv =view.findViewById(R.id.student_dashboard_textView);
         teacherDashboardTv =view.findViewById(R.id.teacher_dashboard_textView);
+        ins1 =view.findViewById(R.id.ins1);
+        ins2 =view.findViewById(R.id.ins2);
         studentDashboardRecyclerView = view.findViewById(R.id.student_dashbosrd_recyclerview);
         teacherDashboardRecyclerView = view.findViewById(R.id.teacherDashboard_recyclerView);
         teacherDashboardRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -113,8 +117,10 @@ public class StudentViewFragment extends Fragment{
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
                                 studentDashboardTv.setVisibility(View.VISIBLE);
+                                ins2.setVisibility(View.INVISIBLE);
                             } else {
 //                                studentDashboardTv.setVisibility(View.INVISIBLE);
+                                ins2.setVisibility(View.VISIBLE);
                                 return;
                             }
                         } else {
@@ -164,9 +170,12 @@ public class StudentViewFragment extends Fragment{
                             if (!(document.isEmpty())) {
                                 Log.d(TAG, "onComplete: document list found ");
                                 teacherDashboardTv.setVisibility(View.VISIBLE);
+                                ins1.setVisibility(View.INVISIBLE);
                             } else {
 //                                teacherDashboardTv.setVisibility(View.INVISIBLE);
+                                ins1.setVisibility(View.VISIBLE);
                                 return;
+
                             }
                         } else {
                             String error = task.getException().getMessage();

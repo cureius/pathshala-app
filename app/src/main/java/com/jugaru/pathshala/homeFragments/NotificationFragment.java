@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +41,7 @@ public class NotificationFragment extends Fragment {
     RecyclerView recyclerView;
     List<NotificationModel> notice;
     NotificationAdapter notificationAdapter;
+    TextView wait , noNotice;
     public NotificationFragment() {
         // Required empty public constructor
     }
@@ -59,6 +61,8 @@ public class NotificationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.notification_recyclerview);
+        wait = view.findViewById(R.id.wait);
+        noNotice = view.findViewById(R.id.noNotice);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -82,11 +86,11 @@ public class NotificationFragment extends Fragment {
                         readNotification(classList);
                         }
                 });
-
     }
 
     private void  readNotification( final List<String> classList){
         notice = new ArrayList<>();
+        wait.setVisibility(View.VISIBLE);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +104,13 @@ public class NotificationFragment extends Fragment {
                     }
                     notificationAdapter = new NotificationAdapter(getContext() , notice );
                     recyclerView.setAdapter(notificationAdapter);
+                }
+                wait.setVisibility(View.INVISIBLE);
+                if(notice.isEmpty()){
+//                    wait.setVisibility(View.INVISIBLE);
+                    noNotice.setVisibility(View.VISIBLE);
+                }else {
+//                    wait.setVisibility(View.VISIBLE);
                 }
             }
             @Override

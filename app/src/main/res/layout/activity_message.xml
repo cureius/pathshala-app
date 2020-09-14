@@ -71,6 +71,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarChat" />
 
+    <TextView
+        android:id="@+id/insChat2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Private Chat"
+        android:textSize="22dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chat_recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarChat" />
     <RelativeLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"

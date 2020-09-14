@@ -50,11 +50,10 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        android:text="Pay Class Fees Via UPI \n
-        Using GooglePay , PhonePay , PayTm
-        \nOr  Any Other Payment App"
-        android:textSize="19sp"
+        android:text="Pay Class Fees Via UPI  Using GooglePay,PhonePay,PayTm Or Any Other Payment App"
+        android:textSize="20sp"
         android:textColor="@color/robinEggBlue"
         android:layout_gravity="center"
         android:gravity="center"/>

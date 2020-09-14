@@ -42,7 +42,7 @@ import static android.content.ContentValues.TAG;
 
 public class MessageActivity extends AppCompatActivity {
     CircleImageView profilePic;
-    TextView userName;
+    TextView userName , chatP;
     RelativeLayout touchProfile;
     RecyclerView recyclerView;
     EditText msg_edittext;
@@ -62,6 +62,7 @@ public class MessageActivity extends AppCompatActivity {
 
         profilePic = findViewById(R.id.profile_pic_chat);
         userName = findViewById(R.id.chat_username);
+        chatP = findViewById(R.id.insChat2);
         sendBtn = findViewById(R.id.btn_send);
         msg_edittext = findViewById(R.id.text_send);
         touchProfile = findViewById(R.id.profile_touch_pad);
@@ -148,6 +149,9 @@ public class MessageActivity extends AppCompatActivity {
 
                         mchat.add(chat);
 
+                    }
+                    if(mchat.isEmpty()){
+                        chatP.setVisibility(View.VISIBLE);
                     }
                     messageAdapter = new MessageAdapter(MessageActivity.this , mchat , imageurl);
                     recyclerView.setAdapter(messageAdapter);
