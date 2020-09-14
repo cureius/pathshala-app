@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/antiFlashWhite"
     tools:context=".homeFragments.StudentViewFragment">
 
 
@@ -12,7 +13,7 @@
         android:id="@+id/toolbar_homeFragment"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/unitedNationBlue"
+        android:background="@color/antiFlashWhite"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -29,7 +30,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/iconb" />
+                app:srcCompat="@drawable/iconb"
+                app:tint="@color/unitedNationBlue" />
 
             <TextView
                 android:id="@+id/textView"
@@ -39,7 +41,7 @@
                 android:gravity="bottom"
                 android:paddingTop="12dp"
                 android:text="Pathshala"
-                android:textColor="@color/whiteTextColor"
+                android:textColor="@color/unitedNationBlue"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
