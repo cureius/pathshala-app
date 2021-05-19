@@ -266,6 +266,10 @@ It will be available soon on PlayStor
 
 ## Credits
 
+
+![Screenshot_2021-05-19-13-19-38-36](https://user-images.githubusercontent.com/59317653/118783239-81699c80-b8ac-11eb-95ae-b4eb4664ecde.jpg)
+
+
 Designed & Developed by ***Souraj pal***
 
 Guidance & Suport ***Prashun Kumar Sarkar , Sayantan Ghosh***
