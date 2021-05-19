@@ -1,8 +1,7 @@
 # Pathshala
 > This is a ReadMe to help save you time and effort.
 ---
-
-![logo](https://user-images.githubusercontent.com/59317653/118823799-e76b1980-b8d6-11eb-9bfa-4b04e124d8cd.png)
+![logo2](https://user-images.githubusercontent.com/59317653/118826947-8c86f180-b8d9-11eb-97fc-2f1f6f4edc45.png)
 
 
 ### Some Screenshot
@@ -282,8 +281,6 @@ It will be available soon on PlayStor
 
 ## Credits
 
-
-<!-- ![Screenshot_2021-05-19-13-19-38-36](https://user-images.githubusercontent.com/59317653/118783239-81699c80-b8ac-11eb-95ae-b4eb4664ecde.jpg) -->
 ![credits](https://user-images.githubusercontent.com/59317653/118825418-4a10e500-b8d8-11eb-85cd-de47b9180270.png)
 
 Designed & Developed by ***Souraj pal***
@@ -291,6 +288,8 @@ Designed & Developed by ***Souraj pal***
 Guidance & Suport ***Prashun Kumar Sarkar , Sayantan Ghosh***
 
 Dedicated to ***Samaresh Biswas***
+
+Logo Design ***Souraj Pal***
 
 
 
