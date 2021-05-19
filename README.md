@@ -1,4 +1,6 @@
 # Pathshala
+> This is a ReadMe to help save you time and effort.
+---
 
 ![Screenshot_2021-05-18-10-21-00-15(1)](https://user-images.githubusercontent.com/59317653/118704001-4d529500-b834-11eb-8378-9dedffa82df6.jpg)
 ![Screenshot_2021-05-18-10-26-26-87](https://user-images.githubusercontent.com/59317653/118704977-4d06c980-b835-11eb-9d65-12df3eadcc23.jpg)
@@ -9,7 +11,6 @@
 ![Screenshot_2021-05-18-10-30-16-15](https://user-images.githubusercontent.com/59317653/118705648-1c735f80-b836-11eb-867a-0b84a987e6b5.jpg)
 ![Screenshot_2021-05-18-11-28-32-00(1)](https://user-images.githubusercontent.com/59317653/118705665-21381380-b836-11eb-9cda-af7347bd386c.jpg)
 
-> This is a ReadMe to help save you time and effort.
 ---
 
 ### Table of Contents
@@ -22,7 +23,7 @@ Here You can find the features and FAQs acording to the topics.
       - [Technologies](#technologies)
   - [How To Use](#how-to-use)
       - [Installation](#installation)
-      - [API Reference](#api-reference)
+      - [FAQ](#faq)
   - [References](#references)
   - [License](#license)
   - [Author Info](#author-info)
