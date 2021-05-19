@@ -23,7 +23,7 @@ Here You can find the features and FAQs acording to the topics.
       - [Technologies](#technologies)
   - [How To Use](#how-to-use)
       - [Installation](#installation)
-      - [FAQ](#faq)
+      - [FAQ](#faqs)
   - [References](#references)
   - [License](#license)
   - [Author Info](#author-info)
@@ -39,7 +39,7 @@ Creating ReadMe's for your Github repository can be tedious.  I hope this templa
 - Technology 1
 - Technology 2
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#pathshala)
 
 ---
 
@@ -175,12 +175,12 @@ https://user-images.githubusercontent.com/59317653/118702545-b1745980-b832-11eb-
 
 
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#pathshala)
 
 ---
 
 ## References
-[Back To The Top](#read-me-template)
+[Back To The Top](#pathshala
 
 ---
 
@@ -209,7 +209,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#pathshala)
 
 ---
 
@@ -218,5 +218,5 @@ SOFTWARE.
 - Twitter - [@jamesqquick](https://twitter.com/jamesqquick)
 - Website - [James Q Quick](https://jamesqquick.com)
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#pathshala)
 
