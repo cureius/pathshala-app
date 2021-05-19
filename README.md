@@ -64,7 +64,15 @@ So to resolve that problem or to help students to find their desired resourcer a
 
 #### Installation
 
-Download - [APK file](https://drive.google.com/file/d/1OpeWS-Mqa6D0tR_5JpP26nxN4bi545PJ/view?usp=sharing)
+you can directly download the APK file from here , and give it a try.
+
+**Download** - [APK file](https://drive.google.com/file/d/1OpeWS-Mqa6D0tR_5JpP26nxN4bi545PJ/view?usp=sharing)
+
+For testing purpose use these credentials 
+
+email - **paulsouraj99@gmail.com**
+
+passkey- **Souraj@123**
 
 
 <!-- https://drive.google.com/file/d/1OpeWS-Mqa6D0tR_5JpP26nxN4bi545PJ/view?usp=sharing -->
