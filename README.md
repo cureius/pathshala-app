@@ -73,9 +73,9 @@ you can directly download the APK file from here , and give it a try.
 
 For testing purpose use these credentials 
 
-email - **paulsouraj99@gmail.com**
+email - **test@gmail.com**
 
-passkey- **Souraj@123**
+passkey- **123456**
 
 
 <!-- https://drive.google.com/file/d/1OpeWS-Mqa6D0tR_5JpP26nxN4bi545PJ/view?usp=sharing -->
