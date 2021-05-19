@@ -64,6 +64,10 @@ So to resolve that problem or to help students to find their desired resourcer a
 
 #### Installation
 
+Download - [APK file](https://drive.google.com/file/d/1OpeWS-Mqa6D0tR_5JpP26nxN4bi545PJ/view?usp=sharing)
+
+
+<!-- https://drive.google.com/file/d/1OpeWS-Mqa6D0tR_5JpP26nxN4bi545PJ/view?usp=sharing -->
 
 
 ## FAQs
